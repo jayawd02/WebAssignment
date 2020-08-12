@@ -6,4 +6,7 @@ Member attendance can be monitored by linking the attendance tracking system or 
 On registering, gym instructors should be able to add workout plans and meal plans to the member profile based 
 on member’s goals (weight reduction, gain, maintain) and preferences (vegan, vegetarian etc). 
 A video library can demonstrate the workouts in the plan and recipes for meals.  
-The members should be able to report progress and add measurements (weight, waist, chest etc) on a regular basis.  The meal plans and workout plans can be adjusted/changed as the member continues achieving the goals. Additional features can be added such as forum for the members, event and workout class scheduling and registration.
+The members should be able to report progress and add measurements (weight, waist, chest etc) on a regular basis.
+The meal plans and workout plans can be adjusted/changed as the member continues achieving the goals. 
+Additional features can be added such as forum for the members, event and workout class scheduling and 
+registration.
