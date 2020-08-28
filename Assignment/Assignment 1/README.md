@@ -21,4 +21,4 @@ Server side rendering is rendering the web page  fully  in server side and sendi
 For each webpage in the website, a request is sent to the server to render the page. 
 This is good for static pages. 
 
-![SSR](/images/ssg-ssr-08-ssr.png)
+![SSR](/Images/ssg-ssr-08-ssr.png)
