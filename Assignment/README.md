@@ -15,9 +15,4 @@ registration.
 
 
 
-#Server Side Rendering#
-
-Server side rendering is rendering the web page  fully  in server side and sending to the client instead of renedering it n the client side browser. 
-For each webpage in the website, a request is sent to the server to render the page. 
-This is good for static pages. 
 
