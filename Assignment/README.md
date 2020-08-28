@@ -1,3 +1,5 @@
+#Project Idea#
+
 The project idea is for a gym or fitness centre where people can be registered and maintain their membership. 
 The website should support member registration, user profile management, renewal with online payment option. 
 Management should be able to view active members, pending payments, revenue reports etc as reports. 
@@ -10,3 +12,12 @@ The members should be able to report progress and add measurements (weight, wais
 The meal plans and workout plans can be adjusted/changed as the member continues achieving the goals. 
 Additional features can be added such as forum for the members, event and workout class scheduling and 
 registration.
+
+
+
+#Server Side Rendering#
+
+Server side rendering is rendering the web page  fully  in server side and sending to the client instead of renedering it n the client side browser. 
+For each webpage in the website, a request is sent to the server to render the page. 
+This is good for static pages. 
+
