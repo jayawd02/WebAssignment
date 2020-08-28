@@ -1,4 +1,4 @@
-#Project Idea#
+# Project Idea
 
 The project idea is for a gym or fitness centre where people can be registered and maintain their membership. 
 The website should support member registration, user profile management, renewal with online payment option. 
@@ -15,9 +15,10 @@ registration.
 
 
 
-#Server Side Rendering#
+# Server Side Rendering
 
 Server side rendering is rendering the web page  fully  in server side and sending to the client instead of renedering it n the client side browser. 
 For each webpage in the website, a request is sent to the server to render the page. 
 This is good for static pages. 
 
+![SSR](/images/ssg-ssr-08-ssr.png)
