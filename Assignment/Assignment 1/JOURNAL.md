@@ -1,7 +1,8 @@
 # Journal
 
-===
+=============
 Aug 28 2020 – Started @ 2:00PM
+
 Read about server side rendering
 
 *[what is server side rendering](https://www.educative.io/edpresso/what-is-server-side-rendering)
@@ -16,3 +17,12 @@ Referred to  [Mastering Markdown](https://guides.github.com/features/mastering-m
 
 
 Created journal.md
+
+=========
+Aug 29 2020 – Started @ 11:30PM
+
+Estimate 1 hr
+
+Started working on sketching the ER diagram. Work not completed
+
+Stopped @ 12.15
