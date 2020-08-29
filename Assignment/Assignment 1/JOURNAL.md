@@ -1,6 +1,7 @@
 # Journal
 
 =============
+
 Aug 28 2020 – Started @ 2:00PM
 
 Read about server side rendering
@@ -19,6 +20,7 @@ Referred to  [Mastering Markdown](https://guides.github.com/features/mastering-m
 Created journal.md
 
 =========
+
 Aug 29 2020 – Started @ 11:30PM
 
 Estimate 1 hr
