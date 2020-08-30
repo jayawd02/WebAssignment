@@ -13,6 +13,17 @@ The meal plans and workout plans can be adjusted/changed as the member continues
 Additional features can be added such as forum for the members, event and workout class scheduling and 
 registration.
 
+## Features selected for implementation
+
+1. Memeber Registration
+2. Member profile
+3. Adding  goal to member which has a diet plan and workout plan
+4. View , like , comment on exercise videos and recipe images
+
+
+
+# ER Diagram
+![ER](https://github.com/kris-classes/web-assignment-jayawd02/blob/master/Assignment/Assignment%201/Images/ER.jpg)
 
 
 # Server Side Rendering
