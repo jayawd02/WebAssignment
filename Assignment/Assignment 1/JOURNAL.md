@@ -35,7 +35,9 @@ Aug 30 2020 - Started @ 12 noon
 
 Estimate 4 h
 
-Completed first version of ER diagrams. Identified attributes
+Completed first version of ER diagrams. Identified attributes.
+
+Added descriptive tasks
 
 Stopped 3 pm
 
