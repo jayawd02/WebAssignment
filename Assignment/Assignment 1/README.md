@@ -25,6 +25,8 @@ registration.
 # ER Diagram
 ![ER](https://github.com/kris-classes/web-assignment-jayawd02/blob/master/Assignment/Assignment%201/Images/ER.jpg)
 
+![ER](https://github.com/kris-classes/web-assignment-jayawd02/blob/master/Assignment/Assignment%201/Images/ER2.jpg)
+
 
 # Server Side Rendering
 
