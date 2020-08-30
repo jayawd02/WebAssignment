@@ -28,3 +28,18 @@ Estimate 1 hr
 Started working on sketching the ER diagram. Work not completed
 
 Stopped @ 12.15
+
+====================
+
+Aug 30 2020 - Started @ 12 noon
+
+Estimate 4 h
+
+Completed first version of ER diagrams. Identified attributes
+
+Stopped 3 pm
+
+
+
+
+
