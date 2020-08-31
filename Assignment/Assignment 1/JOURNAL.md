@@ -41,6 +41,22 @@ Added descriptive tasks
 
 Stopped 3 pm
 
+========================
+
+Aug 31 2020 - Started @ 11.45 pm
+Estimate 1 h
+
+Create django project and created customer model. 
+
+Read  about field types and standards
+[model field types](https://docs.djangoproject.com/en/3.1/ref/models/fields/#model-field-types)
+
+Stopped 1.15 am
+
+=========================================
+
+
+
 
 
 
