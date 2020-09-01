@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">logout</a></p>
+    <p><a href="{% url 'password_change' %}">Change password</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+    <p><a href="{% url 'password_reset' %}">Forgot password</a></p>
+{% endif %}
+{% endblock %}
+</body>
+</html>
