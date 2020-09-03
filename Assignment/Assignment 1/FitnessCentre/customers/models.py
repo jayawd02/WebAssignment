@@ -10,7 +10,7 @@ class Customer(models.Model):
     address_line2 = models.CharField(max_length=50, blank=True, null=True)
     contact_no1 = models.CharField(max_length=15, blank=True, null=True)
     contact_no2 = models.CharField(max_length=15, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True, unique=True)
     date_of_birth = models.DateField()
     health_problems = models.TextField(blank=True, null=True)
     allergies = models.TextField(blank=True, null=True)
