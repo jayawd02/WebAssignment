@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Customer, MembershipPlan, Membership
+from .models import Member, MembershipPlan, Membership
 
-admin.site.register(Customer)
+admin.site.register(Member)
 admin.site.register(MembershipPlan)
 admin.site.register(Membership)

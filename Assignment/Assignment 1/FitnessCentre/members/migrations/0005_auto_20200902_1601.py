@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('customers', '0004_auto_20200902_1329'),
+        ('members', '0004_auto_20200902_1329'),
     ]
 
     operations = [
@@ -24,8 +24,8 @@ class Migration(migrations.Migration):
                 ('end_date', models.DateField()),
                 ('discount', models.DecimalField(decimal_places=2, default=0, max_digits=5, verbose_name='discount percentage')),
                 ('final_fee', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('customers', models.ManyToManyField(to='customers.Customer')),
-                ('membership_plan', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='customers.membershipplan')),
+                ('members', models.ManyToManyField(to='members.Customer')),
+                ('membership_plan', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='members.membershipplan')),
             ],
         ),
     ]

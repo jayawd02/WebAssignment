@@ -2,9 +2,10 @@
 {% block title %}Home{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
-        Hi {{ user.username }}!
+        <img class="rounded-circle account-img" src="{{ user.profile.profile_pic.url }}">
+        Hi {{ user.first_name }}!
         <p><a href="{% url 'password_change' %}">Change password?</a></p>
-        <p><a href="{% url 'logout' %}">logout</a></p>
+
     {% else %}
         <p>You are not logged in</p>
         <p>Login  <a href="{% url 'login' %}"> here</a> ! </p>
