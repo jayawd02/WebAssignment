@@ -8,6 +8,7 @@ Aug 31 2020 | 11.45 pm | 1 h | 1.15 am| Create django project and created custom
 Sep 1 2020 | 3 pm | 4h | 1.45 am | Worked on  login, log out, forget password, change password and sign up features. Went through several tutorials to do this. Have an issue wth the url redirections when the registrations folder is inside an app . Therefore reated one under the project level. Created Memebership plan and made migrations. Need to complete this by changing datatypes. 
 Sep 02 2020 | 2 pm | 2h| 5 pm | Created Membership model, did changes to membershiplans, added these to admin module and tested adding data
 Sep 03 2020 | 7 pm | 4h | 2.50 am | Created profile model and page, Improve the navigation, went through Django tutorials to upload and save a profile image.
+Sep 04 2020 | 3pm | 4h | 1.30 am | Created models for posts, videos and recipes, created some templates for posts, videos,recipes. Went throug django tutorials
 
 
 
