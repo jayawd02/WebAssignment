@@ -20,11 +20,13 @@ from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from gallery import views as gallery_views
 
 
 urlpatterns = [
     path('members/', include('members.urls')),
     path('users/', include('users.urls')),
+    path('gallery/', include('gallery.urls')),
     path('profile/', user_views.profile, name='profile'),
     path('register/', user_views.register, name='register'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
