@@ -1,23 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post,Video,Recipe
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin #to chk whether user is logged in
-
-
-# Create your views here.
-
-# def posts(request):
-#     context = {
-#         'posts': Post.objects.all()
-#     }
-#     return render(request, 'gallery/posts.html', context)
 
 class PostListView(ListView):
     model = Post
-    template_name = 'gallery/posts.html'  # instead of post_list.html redirecting to posts.html
-    context_object_name = 'posts'  # instead of calling the object in html
+    #template_name = 'gallery/post_list.html'  # instead of post_list.html redirecting to post_list.html
+    #context_object_name = 'posts'  # instead of calling the object in html
     ordering = ['-date_posted']  # order the posts newest at top
-
 
 class PostDetailView(DetailView):
     model = Post
@@ -54,3 +44,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+class VideoListView(ListView):
+    model = Video
+    ordering = ['title']
+
+class RecipeListView(ListView):
+    model = Recipe
+    ordering = ['name']

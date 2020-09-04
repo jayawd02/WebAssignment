@@ -10,23 +10,21 @@ class Video(models.Model):
     description = models.TextField()
     TypeChoices = models.TextChoices('TypeChoices', 'Exercise Meal-Prep Recipe Other')
     type = models.CharField(choices=TypeChoices.choices, max_length=12)
-    thumbnail= models.ImageField(blank=True, null=True, upload_to='video_thumbnail')
+    thumbnail= models.ImageField(blank=True, null=True, upload_to='video_thumbnail',default='youtube-default.jpg')
     link = models.URLField(null=True, blank=True)
-    video_file = models.FileField(null=True, blank=True)
-
 
     def __str__(self):
         return self.title
 
 
-class RecipeImage(models.Model):
+class Recipe(models.Model):
     name = models.CharField(max_length=50)
     MealType = models.TextChoices('MealType', 'Vegan Vegetarian Seafood Meat Other')
     type = models.CharField(blank=True, null=True, choices=MealType.choices, max_length=12)
     MealCategory = models.TextChoices ('MealCategory', 'Main Snack Side Soup Salad Dessert Drink Other')
     category = models.CharField(blank=True,null=True, choices=MealCategory.choices, max_length=10)
     description = models.TextField()
-    recipe_image = models.ImageField(upload_to='recipe_pics')
+    recipe_image = models.ImageField(upload_to='recipe_pics',blank=True,null=True, default='recipe-default.jpg')
     ingredients = models.TextField()
     prep_time = models.SmallIntegerField()
 
