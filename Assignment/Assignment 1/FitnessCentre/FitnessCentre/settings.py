@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'members.apps.CustomersConfig',
     'users.apps.UsersConfig',
     'gallery.apps.GalleryConfig',
+    'plans.apps.PlansConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

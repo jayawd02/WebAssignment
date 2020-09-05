@@ -9,7 +9,7 @@
 
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ object.title }}</a>
+              <a class="mr-2" href="{% url 'video-detail' object.id %}">{{ object.title }}</a>
               <small class="text-muted">{{ object.type}}</small>
             </div>
             <p class="article-content">{{ object.description }}</p>

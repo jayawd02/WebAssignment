@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Member(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True,blank=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     address_line1 = models.CharField(max_length=50)
@@ -41,7 +42,7 @@ class MembershipPlan(models.Model):
 
 class Membership(models.Model):
     membership_plan = models.ForeignKey(MembershipPlan, on_delete=models.PROTECT)
-    customers=models.ManyToManyField(Member)
+    members=models.ManyToManyField(Member)
     start_date = models.DateField()
     end_date = models.DateField()
     discount = models.DecimalField("discount percentage", decimal_places=2, max_digits=5, default=0)

@@ -13,7 +13,7 @@ ul {
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background-color: #5693b8;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -75,7 +75,13 @@ a.article-title:hover {
 .account-img {
   height: 125px;
   width: 125px;
-  margin-right: 20px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.post-img {
+  width: 175px;
+  margin-right: 10px;
   margin-bottom: 16px;
 }
 
