@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 from .views import PostListView,PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
-from .views import VideoListView, VideoDetailView
-from .views import RecipeListView, RecipeDetailView
+from .views import VideoListView, VideoDetailView,VideoCreateView,VideoUpdateView, VideoDeleteView
+from .views import RecipeListView, RecipeDetailView,RecipeCreateView, RecipeUpdateView, RecipeDeleteView
 from gallery import views as gallery_views
 
 urlpatterns = [
@@ -14,7 +14,13 @@ urlpatterns = [
     path('posts/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
     path('videos/', VideoListView.as_view(), name='video-list'),
     path('videos/<int:pk>/', VideoDetailView.as_view(), name='video-detail'),
+    path('videos/new/', VideoCreateView.as_view(), name='video-create'),
+    path('videos/<int:pk>/update', VideoUpdateView.as_view(), name='video-update'),
+    path('videos/<int:pk>/delete', VideoDeleteView.as_view(), name='video-delete'),
     path('recipe/', RecipeListView.as_view(), name='recipe-list'),
     path('recipe/<int:pk>/', RecipeDetailView.as_view(), name='recipe-detail'),
+    path('recipe/new/', RecipeCreateView.as_view(), name='recipe-create'),
+    path('recipe/<int:pk>/update', RecipeUpdateView.as_view(), name='recipe-update'),
+    path('recipe/<int:pk>/delete', RecipeDeleteView.as_view(), name='recipe-delete'),
 
 ]

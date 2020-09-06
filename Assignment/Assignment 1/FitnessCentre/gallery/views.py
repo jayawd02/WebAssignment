@@ -28,23 +28,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super(PostCreateView, self).form_valid(form)
 
 
-# def post_create(request):
-#     if request.method == "POST":
-#         post_create_form = PostCreateForm(request.POST, request.FILES, instance=request.user)
-#         if post_create_form.is_valid():
-#             post_create_form.save()
-#             messages.success(request, f'Your post has been created!')
-#             # return redirect('post-list')
-#
-#     else:
-#         post_create_form = PostCreateForm(instance=request.user)
-#
-#     context = {
-#         'form': post_create_form,
-#     }
-#     return render(request, 'gallery/post_form.html', context)
-
-
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,
                      UpdateView):  # test whether user is logged in and as same as te authour of the post
     model = Post
@@ -74,19 +57,87 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class VideoListView(ListView):
     model = Video
-    ordering = ['title']
+    ordering = ['-date_posted']
     paginate_by = 10
 
 
 class VideoDetailView(DetailView):
     model = Video
 
+class VideoCreateView(LoginRequiredMixin,CreateView):
+    model = Video
+    fields = ['title', 'description','type', 'thumbnail','link']
+
+    def form_valid(self, form):
+        form.instance.posted_by= self.request.user
+        return super(VideoCreateView, self).form_valid(form)
+
+class VideoUpdateView(LoginRequiredMixin, UserPassesTestMixin,
+                     UpdateView):  # test whether user is logged in and as same as the authour of the post
+    model = Video
+    fields = ['title', 'description','type', 'thumbnail','link']
+
+    def form_valid(self, form):
+        form.instance.posted_by = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):  # checking user is same as author
+        video = self.get_object()
+        if self.request.user == video.posted_by:
+            return True
+        return False
+
+class VideoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Video
+    success_url = '/'
+
+    def test_func(self):
+        video = self.get_object()
+        if self.request.user == video.posted_by:
+            return True
+        return False
 
 class RecipeListView(ListView):
     model = Recipe
-    ordering = ['name']
+    ordering = ['-date_posted']
     paginate_by = 10
 
 
 class RecipeDetailView(DetailView):
     model = Recipe
+
+
+class RecipeCreateView(LoginRequiredMixin, CreateView):
+    model = Recipe
+    fields = ['name', 'type', 'category', 'description', 'recipe_image','ingredients','prep_time']
+
+    def form_valid(self, form):
+        form.instance.posted_by = self.request.user
+        return super(RecipeCreateView, self).form_valid(form)
+
+
+class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin,
+                      UpdateView):  # test whether user is logged in and as same as the authour of the post
+    model = Recipe
+    fields = ['name', 'type', 'category', 'description', 'recipe_image', 'ingredients', 'prep_time']
+
+    def form_valid(self, form):
+        form.instance.posted_by = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):  # checking user is same as author
+        recipe = self.get_object()
+        if self.request.user == recipe.posted_by:
+            return True
+        return False
+
+
+class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Recipe
+    success_url = '/'
+
+    def test_func(self):
+        recipe = self.get_object()
+        if self.request.user == recipe.posted_by:
+            return True
+        return False

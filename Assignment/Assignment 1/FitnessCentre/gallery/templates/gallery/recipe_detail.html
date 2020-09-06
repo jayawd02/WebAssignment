@@ -9,10 +9,10 @@
             <div class="article-metadata " >
                 <H2 class="mr-2"> {{ object.name }}</H2>
               <small class="text-muted">{{ object.type}}- {{ object.category }} -{{ object.prep_time }} mins</small>
-                {% if object.author == user %}
+                {% if object.posted_by == user %}
                     <div>
-                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}"> Update</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}"> Delete</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'recipe-update' object.id %}"> Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'recipe-delete' object.id %}"> Delete</a>
                     </div>
                 {% endif %}
             </div >

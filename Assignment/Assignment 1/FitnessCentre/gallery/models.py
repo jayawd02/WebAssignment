@@ -12,9 +12,14 @@ class Video(models.Model):
     type = models.CharField(choices=TypeChoices.choices, max_length=12)
     thumbnail= models.ImageField(blank=True, null=True, upload_to='video_thumbnail',default='youtube-default.jpg')
     link = models.URLField(null=True, blank=True)
+    date_posted = models.DateTimeField(default=timezone.now)
+    posted_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url (self): # setting return url when create post is submitted
+        return reverse('video-detail',kwargs={'pk': self.pk})  #return full path as string
 
 
 class Recipe(models.Model):
@@ -27,9 +32,14 @@ class Recipe(models.Model):
     recipe_image = models.ImageField(upload_to='recipe_pics',blank=True,null=True, default='recipe-default.jpg')
     ingredients = models.TextField()
     prep_time = models.SmallIntegerField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url (self): # setting return url when create post is submitted
+        return reverse('recipe-detail',kwargs={'pk': self.pk})  #return full path as string
 
 class Post(models.Model):
     content = models.TextField()
