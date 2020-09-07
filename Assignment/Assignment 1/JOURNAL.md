@@ -11,6 +11,7 @@ Sep 03 2020 | 7 pm | 4h | 2.50 am | Created profile model and page, Improve the 
 Sep 04 2020 | 3pm | 4h | 1.30 am | Created models for posts, videos and recipes, created some templates for posts, videos,recipes. Went through django tutorials
 Sep 05 2020 | 2 pm | 4h| 1.15 am | Created models for Diet plan, workout plan, exercise, meal. created templates and views for video and recipe. Spent lot of time trying to troublehoot a file upload issue. But it started working when checking after some time. ER diagram need to be updated ith latest changes. Added Pagination to list views.
 Sep 06 2020 | 5 pm | 2h | 7.30 pm | Created reset of templates and views for video and recipe, edited the video and recipe models to include created date and posted by. 
+Sep 07 2020| 9.30 pm | 1h | 11.30pm| Created profile detail template and model. Updated profile edit model and template
 
 
 
