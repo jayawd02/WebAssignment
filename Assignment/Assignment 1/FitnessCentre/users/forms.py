@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from members.models import Member
 from users.models import Profile
 
 
@@ -29,3 +30,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic']
+
+class MemberUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        fields = ['address_line1','address_line2','contact_no1','contact_no2','email','date_of_birth',
+                  'health_problems','allergies','meal_preference','height','gender']

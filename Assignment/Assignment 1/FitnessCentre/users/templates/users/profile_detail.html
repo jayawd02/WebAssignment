@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Profile Detail{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="media content-section">
+        {% if user.profile.profile_pic.url != null %}
+            <img class="rounded-circle account-img" src="{{ user.profile.profile_pic.url }}">
+        {% endif %}
+        <div class="media-body ml-5">
+            <div class="article-metadata"><H2> {{ user.first_name }} {{ user.last_name }}</H2>
+                     <div><a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'profile'  %}"> Edit</a></div>
+            </div>
+            <p class="article-content">
+                <div> Member ID : {{ user.member.id }}     </div>
+                <div>Email : {{ user.member.email }}</div>
+                <div>Address : {{ user.member.address_line1 }}     {{ user.member.address_line2 }}  </div>
+                <div>Contact No: {{ user.member.contact_no1 }}  |   {{ user.member.contact_no2 }}</div>
+                <div>Date of Birth : {{ user.member.date_of_birth }}</div>
+                <div>Health Problems: {{ user.member.health_problems }}</div>
+                <div>Allergies : {{ user.member.allergies }}</div>
+                <div>Meal Preference : {{ user.member.meal_preference}}</div>
+                <div>Height (cm) : {{ user.member.height }}</div>
+                <div>Gender : {{ user.member.gender }}</div>
+            </p>
+
+            <div class="article-metadata"><H4>Membership Details</H4></div>
+            <p class="article-content">
+                <div>Membership Plan : {{ user.member.membership_set.last.membership_plan }}</div>
+                <div>Start date : {{user.member.membership_set.last.start_date }}</div>
+                <div>End date : {{user.member.membership_set.last.end_date }}</div>
+                <div>Fee : {{user.member.membership_set.last.final_fee }}</div>
+            </p>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

@@ -15,6 +15,7 @@
         {% csrf_token %}
         {{ u_form|crispy }}
         {{ p_form|crispy }}
+        {{ m_form|crispy }}
         <button type="submit" class="btn btn-success">Update</button>
     </form>
 
