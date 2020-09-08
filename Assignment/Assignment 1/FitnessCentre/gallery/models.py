@@ -50,6 +50,6 @@ class Post(models.Model):
     def __str__(self):
         return self.content
 
-    def get_absolute_url (self): # setting return url when create post is submitted
-        return reverse('post-detail',kwargs={'pk': self.pk})  #return full path as string
+    #def get_absolute_url (self): # setting return url when create post is submitted
+    #    return reverse('post-detail',kwargs={'pk': self.pk})  #return full path as string
 

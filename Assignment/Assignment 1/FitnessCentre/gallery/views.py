@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
-from .forms import PostCreateForm
+from django.forms import inlineformset_factory
+from .forms import PostCreateForm, PostCreateFormSet
 from .models import Post, Video, Recipe
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
+from django.views.generic.edit import FormView
 
 
 class PostListView(ListView):
@@ -19,12 +21,28 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['content', 'image']
+# class PostCreateView(LoginRequiredMixin, CreateView):
+#     #model = Post
+#     #fields = ['content', 'image']
+#     form_class =PostCreateForm
+#     success_url = '/'
+#
+#     def form_valid(self, form):  # pass the current logged in user as author to the model
+#         form.instance.author = self.request.user
+#         messages.success(self.request, f'Your post has been created!')
+#         return super(PostCreateView, self).form_valid(form)
+
+# multiple posts using formset
+class PostCreateView(FormView):
+    template_name = 'gallery\post_form.html'
+    form_class = PostCreateFormSet
+    success_url = '/'
 
     def form_valid(self, form):  # pass the current logged in user as author to the model
-        form.instance.author = self.request.user
+        for form in form:
+                form.instance.author = self.request.user
+                form.save()
+        messages.success(self.request, f'Your post has been created!')
         return super(PostCreateView, self).form_valid(form)
 
 
@@ -35,6 +53,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.success(self.request, f'Your post has been updated!')
         return super().form_valid(form)
 
     def test_func(self):  # checking user is same as author
@@ -64,21 +83,25 @@ class VideoListView(ListView):
 class VideoDetailView(DetailView):
     model = Video
 
-class VideoCreateView(LoginRequiredMixin,CreateView):
-    model = Video
-    fields = ['title', 'description','type', 'thumbnail','link']
 
-    def form_valid(self, form):
-        form.instance.posted_by= self.request.user
-        return super(VideoCreateView, self).form_valid(form)
-
-class VideoUpdateView(LoginRequiredMixin, UserPassesTestMixin,
-                     UpdateView):  # test whether user is logged in and as same as the authour of the post
+class VideoCreateView(LoginRequiredMixin, CreateView):
     model = Video
-    fields = ['title', 'description','type', 'thumbnail','link']
+    fields = ['title', 'description', 'type', 'thumbnail', 'link']
 
     def form_valid(self, form):
         form.instance.posted_by = self.request.user
+        messages.success(self.request, f'Your video has been added!')
+        return super(VideoCreateView, self).form_valid(form)
+
+
+class VideoUpdateView(LoginRequiredMixin, UserPassesTestMixin,
+                      UpdateView):  # test whether user is logged in and as same as the authour of the post
+    model = Video
+    fields = ['title', 'description', 'type', 'thumbnail', 'link']
+
+    def form_valid(self, form):
+        form.instance.posted_by = self.request.user
+        messages.success(self.request, f'Your video has been updated!')
         return super().form_valid(form)
 
     def test_func(self):  # checking user is same as author
@@ -86,6 +109,7 @@ class VideoUpdateView(LoginRequiredMixin, UserPassesTestMixin,
         if self.request.user == video.posted_by:
             return True
         return False
+
 
 class VideoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Video
@@ -96,6 +120,7 @@ class VideoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == video.posted_by:
             return True
         return False
+
 
 class RecipeListView(ListView):
     model = Recipe
@@ -109,20 +134,22 @@ class RecipeDetailView(DetailView):
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
-    fields = ['name', 'type', 'category', 'description', 'recipe_image','ingredients','prep_time']
+    fields = ['name', 'type', 'category', 'description', 'recipe_image', 'ingredients', 'prep_time']
 
     def form_valid(self, form):
         form.instance.posted_by = self.request.user
+        messages.success(self.request, f'Your recipe has been created!')
         return super(RecipeCreateView, self).form_valid(form)
 
 
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin,
-                      UpdateView):  # test whether user is logged in and as same as the authour of the post
+                       UpdateView):  # test whether user is logged in and as same as the authour of the post
     model = Recipe
     fields = ['name', 'type', 'category', 'description', 'recipe_image', 'ingredients', 'prep_time']
 
     def form_valid(self, form):
         form.instance.posted_by = self.request.user
+        messages.success(self.request, f'Your recipe has been updated!')
         return super().form_valid(form)
 
     def test_func(self):  # checking user is same as author
