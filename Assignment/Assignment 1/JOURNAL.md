@@ -13,6 +13,9 @@ Sep 05 2020 | 2 pm | 4h| 1.15 am | Created models for Diet plan, workout plan, e
 Sep 06 2020 | 5 pm | 2h | 7.30 pm | Created reset of templates and views for video and recipe, edited the video and recipe models to include created date and posted by. 
 Sep 07 2020| 9.30 pm | 1h | 11.30pm| Created profile detail template and model. Updated profile edit model and template
 Sep 08 2020| 9.00 pm| 2h| 12 am| Updated plans models. create new migrations. created views and templates  for some plans.  Triedout form set for post creation. Added messages for post, video and recipe creation and update
+Sep 09 2020| 4 pm | 2h | 8pm | Admin control panel customizations, new templates for workoutplan-detail and views
+
+
 
 
 
