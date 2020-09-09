@@ -14,7 +14,9 @@
             </div >
 
             <div class="mr-2">
-                <p class="article-content"> {{ object.target_date }}</p>
+                <p class="article-content">Target Date:  {{ object.target_date }}</p>
+                <p>workout plan</p>
+                {{ object.workoutplan_set.first.day }}- {{ object.workoutplan_set.first.exercise }}
             </div>
           </div>
         </article>

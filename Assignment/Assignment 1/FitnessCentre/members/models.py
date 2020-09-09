@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True,blank=True)
+    user = models.OneToOneField(User, on_delete=models.PROTECT,null=True,blank=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     address_line1 = models.CharField(max_length=50)
@@ -20,7 +20,7 @@ class Member(models.Model):
     height = models.DecimalField(decimal_places=2, max_digits=5)
     photo = models.ImageField(blank=True, null=True)
     Gender = models.TextChoices('Gender', 'Male Female Other')
-    gender = models.CharField(blank=True, null=True, choices=Gender.choices, max_length=6)
+    gender = models.CharField(choices=Gender.choices, max_length=6)
 
     def __str__(self):
         return self.first_name
