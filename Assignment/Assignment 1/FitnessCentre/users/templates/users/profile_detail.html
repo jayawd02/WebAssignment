@@ -22,18 +22,11 @@
                 <div>Height (cm) : {{ user.member.height }}</div>
                 <div>Gender : {{ user.member.gender }}</div>
             </p>
-
-            <div class="article-metadata"><H4>Membership Details</H4></div>
-            <p class="article-content">
-                <div>Membership Plan : {{ user.member.membership_set.last.membership_plan }}</div>
-                <div>Start date : {{user.member.membership_set.last.start_date }}</div>
-                <div>End date : {{user.member.membership_set.last.end_date }}</div>
-                <div>Fee : {{user.member.membership_set.last.final_fee }}</div>
-            </p>
+            <div>
+                <p class="article-content">
+                    {% include "users\membership_detail.html" %}
+                </p>
+            </div>
         </div>
-
     </div>
-
-
-
-{% endblock %}
+  {% endblock %}

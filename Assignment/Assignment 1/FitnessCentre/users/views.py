@@ -9,17 +9,17 @@ from django.contrib import messages
 
 
 
-def register(response):
-    if response.method == "POST":
-        form = UserRegisterForm(response.POST)
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(response, f'Your account has been created! You are now able to log in')
+            messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect("login")
     else:
         form = UserRegisterForm()
-    return render(response, "users/register.html", {"form": form})
+    return render(request, "users/register.html", {"form": form})
 
 
 @login_required # check if login or not if not redirect to login URL set in settings
@@ -48,6 +48,5 @@ def profile(request):
     return render(request, 'users/profile.html',context)
 
 def profile_view (request):
-    user = get_object_or_404(User, pk=request.user.id)
-
+    #user = get_object_or_404(User, pk=request.user.id)
     return render(request, 'users\profile_detail.html')

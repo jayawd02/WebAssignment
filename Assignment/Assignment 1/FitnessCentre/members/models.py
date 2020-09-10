@@ -18,7 +18,6 @@ class Member(models.Model):
     MealPreference = models.TextChoices('MealPreference', 'Vegan Vegetarian Pescatarian')
     meal_preference = models.CharField(blank=True, null=True, choices=MealPreference.choices, max_length=12)
     height = models.DecimalField(decimal_places=2, max_digits=5)
-    photo = models.ImageField(blank=True, null=True)
     Gender = models.TextChoices('Gender', 'Male Female Other')
     gender = models.CharField(choices=Gender.choices, max_length=6)
 

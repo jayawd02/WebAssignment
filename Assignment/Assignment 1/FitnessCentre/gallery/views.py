@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.forms import inlineformset_factory
-from .forms import PostCreateForm, PostCreateFormSet
+from .forms import PostCreateForm, PostCreateFormSet, VideoCreateFormSet
 from .models import Post, Video, Recipe
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
 from django.views.generic.edit import FormView
@@ -21,29 +21,29 @@ class PostDetailView(DetailView):
     model = Post
 
 
-# class PostCreateView(LoginRequiredMixin, CreateView):
-#     #model = Post
-#     #fields = ['content', 'image']
-#     form_class =PostCreateForm
+class PostCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'gallery\post_form.html'
+    form_class = PostCreateForm
+
+    def form_valid(self, form):  # pass the current logged in user as author to the model
+        form.instance.author = self.request.user
+        form.save()
+        messages.success(self.request, f'Your post has been created!')
+        return super(PostCreateView, self).form_valid(form)
+
+
+# multiple posts using formset
+# class PostCreateView(FormView):
+#     template_name = 'gallery\post_form.html'
+#     form_class = PostCreateFormSet
 #     success_url = '/'
 #
 #     def form_valid(self, form):  # pass the current logged in user as author to the model
-#         form.instance.author = self.request.user
+#         for form in form:
+#                 form.instance.author = self.request.user
+#                 form.save()
 #         messages.success(self.request, f'Your post has been created!')
 #         return super(PostCreateView, self).form_valid(form)
-
-# multiple posts using formset
-class PostCreateView(FormView):
-    template_name = 'gallery\post_form.html'
-    form_class = PostCreateFormSet
-    success_url = '/'
-
-    def form_valid(self, form):  # pass the current logged in user as author to the model
-        for form in form:
-                form.instance.author = self.request.user
-                form.save()
-        messages.success(self.request, f'Your post has been created!')
-        return super(PostCreateView, self).form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,
@@ -84,12 +84,24 @@ class VideoDetailView(DetailView):
     model = Video
 
 
-class VideoCreateView(LoginRequiredMixin, CreateView):
-    model = Video
-    fields = ['title', 'description', 'type', 'thumbnail', 'link']
+# class VideoCreateView(LoginRequiredMixin, CreateView):
+#     model = Video
+#     fields = ['title', 'description', 'type', 'thumbnail', 'link']
+#
+#     def form_valid(self, form):
+#         form.instance.posted_by = self.request.user
+#         messages.success(self.request, f'Your video has been added!')
+#         return super(VideoCreateView, self).form_valid(form)
 
-    def form_valid(self, form):
-        form.instance.posted_by = self.request.user
+class VideoCreateView(FormView):
+    template_name = 'gallery\\video_form.html'
+    form_class = VideoCreateFormSet
+    success_url = '/'
+
+    def form_valid(self, form):  # pass the current logged in user as author to the model
+        for form in form:
+            form.instance.posted_by = self.request.user
+            form.save()
         messages.success(self.request, f'Your video has been added!')
         return super(VideoCreateView, self).form_valid(form)
 

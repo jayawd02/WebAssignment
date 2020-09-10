@@ -36,7 +36,7 @@ urlpatterns = [
     #path('users/', include('django.contrib.auth.urls')),
     path('', include("django.contrib.auth.urls")),
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', TemplateView.as_view(template_name='members/home.html'), name='home'),
 ]
 
 if settings.DEBUG:

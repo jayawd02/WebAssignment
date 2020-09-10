@@ -7,7 +7,7 @@ from django.urls import reverse
 # Create your models here.
 class Video(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True,blank=True)
     TypeChoices = models.TextChoices('TypeChoices', 'Exercise Meal-Prep Recipe Other')
     type = models.CharField(choices=TypeChoices.choices, max_length=12)
     thumbnail= models.ImageField(blank=True, null=True, upload_to='video_thumbnail',default='youtube-default.jpg')
@@ -18,7 +18,7 @@ class Video(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url (self): # setting return url when create post is submitted
+    def get_absolute_url (self): # setting return url when create video is submitted
         return reverse('video-detail',kwargs={'pk': self.pk})  #return full path as string
 
 
@@ -43,13 +43,13 @@ class Recipe(models.Model):
 
 class Post(models.Model):
     content = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
+    date_posted = models.DateTimeField(default=timezone.now) #auto_now_add= True. date modified ->auto_now=True
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True, upload_to='post_pics')
 
     def __str__(self):
         return self.content
 
-    #def get_absolute_url (self): # setting return url when create post is submitted
-    #    return reverse('post-detail',kwargs={'pk': self.pk})  #return full path as string
+    def get_absolute_url (self): # setting return url when create post is submitted
+        return reverse('post-detail',kwargs={'pk': self.pk})  #return full path as string
 
