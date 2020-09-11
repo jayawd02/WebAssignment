@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.forms import inlineformset_factory
-from .forms import PostCreateForm, PostCreateFormSet, VideoCreateFormSet
+from .forms import PostCreateForm, PostCreateFormSet, VideoCreateFormSet, PostCommentForm
 from .models import Post, Video, Recipe
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
 from django.views.generic.edit import FormView
@@ -11,14 +12,59 @@ from django.views.generic.edit import FormView
 
 class PostListView(ListView):
     model = Post
-    # template_name = 'gallery/post_list.html'  # instead of post_list.html redirecting to post_list.html
-    # context_object_name = 'posts'  # instead of calling the object in html
     ordering = ['-date_posted']  # order the posts newest at top
     paginate_by = 10
 
 
-class PostDetailView(DetailView):
-    model = Post
+# class PostDetailView(DetailView):
+#     model = Post
+#     form_class = PostCommentForm
+#
+#     def get_queryset(self):
+#          return Post.objects.filter(id=self.kwargs.get('pk'))
+
+@login_required
+def post_detail(request, post_id):
+    template_name = 'gallery\post_detail.html'
+    post = get_object_or_404(Post, pk=post_id)
+    comments = post.comments.exclude(active=False).order_by('created_on')
+    new_comment = None
+
+    if request.method == 'POST':
+        comment_form = PostCommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            comment_form.instance.name = request.user
+            new_comment.post = post
+            new_comment.name = request.user
+            new_comment.save()
+            messages.success(request, f'Your comment has been added')
+            comment_form = PostCommentForm()
+    else:
+        comment_form = PostCommentForm()
+
+    context = {'post': post,
+               'comments': comments,
+               'new_comment': new_comment,
+               'form': comment_form}
+    return render(request, template_name, context)
+
+
+# def postcomment_create(request, post_id):
+#     template_name = 'gallery\postcomment_form.html'
+#     post = get_object_or_404(Post, pk=post_id)
+#     new_comment = None
+#
+#     if request.method == 'POST':
+#         comment_form = PostCommentForm(data=request.POST)
+#         if comment_form.is_valid():
+#             new_comment = comment_form.save(commit=False)
+#             new_comment.post = post
+#             new_comment.save()
+#     else:
+#         comment_form = PostCommentForm()
+#
+#     return render(request, template_name, {'form': comment_form})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

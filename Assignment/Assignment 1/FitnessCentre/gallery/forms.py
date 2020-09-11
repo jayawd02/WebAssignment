@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import formset_factory
 
-from gallery.models import Post, Video
+from gallery.models import Post, Video, PostComment
 
 
 class PostCreateForm(forms.ModelForm):
@@ -20,3 +20,10 @@ class VideoCreateForm(forms.ModelForm):
 
 
 VideoCreateFormSet = formset_factory(VideoCreateForm, extra=3, max_num=3, min_num=1)
+
+
+
+class PostCommentForm(forms.ModelForm):
+    class Meta:
+        model = PostComment
+        fields = [ 'body']
