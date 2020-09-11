@@ -15,6 +15,7 @@ Sep 07 2020| 9.30 pm | 1h | 11.30pm| Created profile detail template and model. 
 Sep 08 2020| 9.00 pm| 2h| 12 am| Updated plans models. create new migrations. created views and templates  for some plans.  Triedout form set for post creation. Added messages for post, video and recipe creation and update
 Sep 09 2020| 4 pm | 2h | 8pm | Admin control panel customizations, new templates for workoutplan-detail and views
 Sep 10 2020 | 7 pm | 3h| 12.30 am | Create template and view to view workout plan of logged in user, update models update signal. fixed bugs"
+Sep 11 2020 | 10 pm| 2h| 12 .15 am | added comment model for post. Edited post detail template and view to show and post comments.
 
 
 
