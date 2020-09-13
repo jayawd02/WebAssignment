@@ -58,8 +58,14 @@ class WorkoutPlanListView(ListView):
     template_name = 'plans\goalworkoutplan_list.html'
 
     def get_queryset(self):
-        goal = get_object_or_404(Goal, id= self.kwargs.get('goal_id'))
-        return WorkoutPlan.objects.filter(goal=goal).order_by('day')
+        try:
+            goal_set = Goal.objects.filter(status='Active', member=self.request.user.member)
+        except:
+            goal_set = None
+
+        if goal_set != None:
+            return WorkoutPlan.objects.select_related('exercise').filter(goal=goal_set.last()).order_by('day')
+
 
 
 class WorkoutPlanDetailView(DetailView):

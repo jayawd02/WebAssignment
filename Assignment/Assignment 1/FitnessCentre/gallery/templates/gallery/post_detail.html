@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-        <article class="media content-section">
+   <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.profile_pic.url }}">
           <div class="media-body">
             <div class="article-metadata">
@@ -20,6 +20,45 @@
             <div class="mr-2">
                 <p class="article-content"> {{ post.content }}</p>
             </div>
+
+          <div class="text-left">
+             <span class="pointer">
+                {% if request.user in post.likes.users.all%}
+                    <!-- already liked-->
+
+                    <a href="{% url 'post-vote' post_id=post.id opinion='like' %}">
+                        <i data-toggle="tooltip" data-placement="bottom" title="Unlike" class="thumbs up icon pr-2">
+                    <span>{{post.get_total_likes}}</span>
+                    </i>
+                    </a>
+                {% else %}
+                    <!--not liked-->
+                    <a href="{% url 'post-vote' post_id=post.id opinion='like' %}">
+                        <i data-toggle="tooltip" data-placement="bottom" title="Like" class="thumbs up outline icon">
+                    <span>{% if post.get_total_likes  %}{{post.get_total_likes}} {% else %} 0
+                    {% endif %}</span></i>
+                    </a>
+                {% endif %}
+             </span>
+             <span class="ml-3 pointer">
+             {% if request.user in post.dislikes.users.all %}
+
+                 <a href="{% url 'post-vote' post_id=post.id opinion='dislike' %}">
+                 <i data-toggle="tooltip" data-placement="bottom" title="I dislike this"  class="thumbs down icon">
+                 <span>{{post.get_total_dislikes}}</span></i>
+                 </a>
+             {% else %}
+                 <a href="{% url 'post-vote' post_id=post.id opinion='dislike' %}">
+                 <i data-toggle="tooltip" data-placement="bottom" title="I dislike this" class="thumbs down outline icon">
+                     <span> {% if  post.get_total_dislikes %} {{post.get_total_dislikes}}
+                 {% else %}  0 {% endif %} </span></i>
+
+                 </a>
+             {% endif %}
+             </span>
+          </div>
+
+
           </div>
         </article>
             <div >
@@ -31,7 +70,7 @@
                       {{ comment.created_on }}
                     </span>
                   </p>
-                  {{ comment.body | linebreaks }}
+                  {{ comment.comment | linebreaks }}
                 </div>
             {% endfor %}
             </div>

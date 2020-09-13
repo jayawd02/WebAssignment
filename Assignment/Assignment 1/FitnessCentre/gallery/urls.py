@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
-from .views import PostListView, PostCreateView, PostUpdateView, PostDeleteView
+from .views import PostListView, PostCreateView, PostUpdateView, PostDeleteView, UpdatePostVote
 from .views import VideoListView, VideoDetailView,VideoCreateView,VideoUpdateView, VideoDeleteView
 from .views import RecipeListView, RecipeDetailView,RecipeCreateView, RecipeUpdateView, RecipeDeleteView
 from gallery import views as gallery_views
+
 
 urlpatterns = [
     #path('posts/', views.posts, name='posts'),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('posts/new/', PostCreateView.as_view(), name='post-create'),
     path('posts/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('posts/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('posts/<int:post_id>/<str:opinion>/', UpdatePostVote.as_view(), name='post-vote'),
     #path('posts/<int:post_id>/comment/',gallery_views.postcomment_create,name='post-comment'),
     path('videos/', VideoListView.as_view(), name='video-list'),
     path('videos/<int:pk>/', VideoDetailView.as_view(), name='video-detail'),

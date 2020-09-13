@@ -47,17 +47,24 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True, upload_to='post_pics')
 
+    def get_total_likes(self):
+        return self.likes.users.count()
+
+    def get_total_dislikes(self):
+        return self.dislikes.users.count()
+
     def __str__(self):
-        return self.content
+        return str(self.content)[:30]
 
     def get_absolute_url (self): # setting return url when create post is submitted
-        return reverse('post-detail',kwargs={'pk': self.pk})  #return full path as string
+        return reverse('post-detail',kwargs={'post_id': self.pk})  #return full path as string
+
 
 
 class PostComment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
     name = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,blank=True)
-    body = models.TextField()
+    comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
 
@@ -66,3 +73,21 @@ class PostComment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+
+class PostLike(models.Model):
+    post = models.OneToOneField(Post, related_name="likes", on_delete=models.CASCADE)
+    users = models.ManyToManyField(User, related_name='post_likes')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.post.content)[:30]
+
+class PostDislike(models.Model):
+    post = models.OneToOneField(Post, related_name="dislikes", on_delete=models.CASCADE)
+    users = models.ManyToManyField(User, related_name='post_dislikes')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.post.content)[:30]

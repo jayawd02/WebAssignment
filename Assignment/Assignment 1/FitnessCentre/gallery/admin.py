@@ -24,9 +24,9 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class PostCommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'body', 'post', 'created_on', 'active')
+    list_display = ('name', 'comment', 'post', 'created_on', 'active')
     list_filter = ('active', 'created_on')
-    search_fields = ('name',  'body')
+    search_fields = ('name',  'comment')
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):

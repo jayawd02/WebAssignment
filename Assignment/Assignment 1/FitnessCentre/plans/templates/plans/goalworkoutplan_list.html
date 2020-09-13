@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <h1 class="mb-3"> My Workout Plan </h1>
         <article class="media content-section">
 
@@ -10,6 +11,7 @@
                 <th scope="col">Exercise</th>
                 <th scope="col">Calories Burn</th>
                 <th scope="col"> Detail</th>
+                <th scope="col"> Equipment</th>
             </tr>
         </thead>
             {% for object in object_list %}
@@ -26,6 +28,11 @@
                 {% if object.weight != null %}
                   with {{ object.weight }} kg
                 {% endif  %}
+            </td>
+            <td>
+                {% if object.exercise.equipments != null %}
+                        {{ object.exercise.equipments }}
+                {% endif %}
                 </td>
             </tr>
                {% endfor %}
@@ -52,4 +59,6 @@
 
         {% endif %}
     {% endif %}
+
+
 {% endblock content %}

@@ -12,4 +12,9 @@ def create_profile (sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
-    print("User is created and profile is created")
+
+@receiver(post_save, sender=User)
+def create_user(sender,instance,created,**kwargs):
+    if created:
+        print("user is created")
+

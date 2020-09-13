@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.forms import inlineformset_factory
+from django.views.generic.base import View
+
 from .forms import PostCreateForm, PostCreateFormSet, VideoCreateFormSet, PostCommentForm
-from .models import Post, Video, Recipe
+from .models import Post, Video, Recipe, PostDislike, PostLike
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
 from django.views.generic.edit import FormView
 
@@ -15,13 +18,6 @@ class PostListView(ListView):
     ordering = ['-date_posted']  # order the posts newest at top
     paginate_by = 10
 
-
-# class PostDetailView(DetailView):
-#     model = Post
-#     form_class = PostCommentForm
-#
-#     def get_queryset(self):
-#          return Post.objects.filter(id=self.kwargs.get('pk'))
 
 @login_required
 def post_detail(request, post_id):
@@ -50,21 +46,6 @@ def post_detail(request, post_id):
     return render(request, template_name, context)
 
 
-# def postcomment_create(request, post_id):
-#     template_name = 'gallery\postcomment_form.html'
-#     post = get_object_or_404(Post, pk=post_id)
-#     new_comment = None
-#
-#     if request.method == 'POST':
-#         comment_form = PostCommentForm(data=request.POST)
-#         if comment_form.is_valid():
-#             new_comment = comment_form.save(commit=False)
-#             new_comment.post = post
-#             new_comment.save()
-#     else:
-#         comment_form = PostCommentForm()
-#
-#     return render(request, template_name, {'form': comment_form})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -76,20 +57,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.save()
         messages.success(self.request, f'Your post has been created!')
         return super(PostCreateView, self).form_valid(form)
-
-
-# multiple posts using formset
-# class PostCreateView(FormView):
-#     template_name = 'gallery\post_form.html'
-#     form_class = PostCreateFormSet
-#     success_url = '/'
-#
-#     def form_valid(self, form):  # pass the current logged in user as author to the model
-#         for form in form:
-#                 form.instance.author = self.request.user
-#                 form.save()
-#         messages.success(self.request, f'Your post has been created!')
-#         return super(PostCreateView, self).form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,
@@ -139,6 +106,7 @@ class VideoDetailView(DetailView):
 #         messages.success(self.request, f'Your video has been added!')
 #         return super(VideoCreateView, self).form_valid(form)
 
+# formset create video
 class VideoCreateView(FormView):
     template_name = 'gallery\\video_form.html'
     form_class = VideoCreateFormSet
@@ -226,3 +194,44 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == recipe.posted_by:
             return True
         return False
+
+
+class UpdatePostVote(LoginRequiredMixin, View):
+    template_name = 'gallery\post_detail.html'
+
+
+    def get(self, request, *args, **kwargs):
+
+        post_id = self.kwargs.get('post_id', None)
+        opinion = self.kwargs.get('opinion', None) # like or dislike button clicked
+
+        post = get_object_or_404(Post, id=post_id)
+
+        try:
+            post.dislikes
+        except Post.dislikes.RelatedObjectDoesNotExist as identifier:
+            PostDislike.objects.create(post = post)
+
+        try:
+            post.likes
+        except Post.likes.RelatedObjectDoesNotExist as identifier:
+            PostLike.objects.create(post = post)
+
+        if opinion.lower() == 'like':
+
+            if request.user in post.likes.users.all():
+                post.likes.users.remove(request.user)
+            else:
+                post.likes.users.add(request.user)
+                post.dislikes.users.remove(request.user)
+
+        elif opinion.lower() == 'dislike':
+
+            if request.user in post.dislikes.users.all():
+                post.dislikes.users.remove(request.user)
+            else:
+                post.dislikes.users.add(request.user)
+                post.likes.users.remove(request.user)
+        else:
+            return HttpResponseRedirect(reverse('post-detail',kwargs={'post_id':post.id} ))
+        return HttpResponseRedirect(reverse('post-detail', kwargs={'post_id':post.id} ))
