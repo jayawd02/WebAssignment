@@ -17,6 +17,7 @@ Sep 09 2020| 4 pm | 2h | 8pm | Admin control panel customizations, new templates
 Sep 10 2020 | 7 pm | 3h| 12.30 am | Create template and view to view workout plan of logged in user, update models update signal. fixed bugs"
 Sep 11 2020 | 10 pm| 2h| 12 .15 am | added comment model for post. Edited post detail template and view to show and post comments.
 Sep 12 2020 | 8.30 pm|2h| 11.30 pm | Fixed bugs, added signal for user create, wrote 3 test cases
+Sep 13 2020 | 4 pm | 3h|12 am|Added like and unlike feature to posts. Created related models, and views and did migrations. updated post detail view to include the new buttons
 
 
 
