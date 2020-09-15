@@ -72,7 +72,7 @@ class PostComment(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body, self.name)
+        return 'Comment {} by {}'.format(self.comment, self.name)
 
 class PostLike(models.Model):
     post = models.OneToOneField(Post, related_name="likes", on_delete=models.CASCADE)

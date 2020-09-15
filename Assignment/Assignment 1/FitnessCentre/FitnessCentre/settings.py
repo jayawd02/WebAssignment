@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
@@ -25,7 +28,11 @@ SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'radiant-wildwood-35413.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -80,10 +87,18 @@ WSGI_APPLICATION = 'FitnessCentre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get('DATABASE_URL'):
+    print ('using heroku')
+    DATABASES={
+        'default':dj_database_url.config(conn_max_age=600)
+    }
+
+else:
+    print('using local sqlite')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -126,14 +141,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT= 'staticfiles'
+
+
+
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
 LOGIN_REDIRECT_URL = "home"
 LOGIN_URL='login'
-#LOGOUT_REDIRECT_URL = "home"
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
+

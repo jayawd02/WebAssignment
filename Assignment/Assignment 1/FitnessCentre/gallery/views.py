@@ -4,10 +4,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
-from django.forms import inlineformset_factory
 from django.views.generic.base import View
 
-from .forms import PostCreateForm, PostCreateFormSet, VideoCreateFormSet, PostCommentForm
+from .forms import PostCreateForm, VideoCreateFormSet, PostCommentForm
 from .models import Post, Video, Recipe, PostDislike, PostLike
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
 from django.views.generic.edit import FormView
@@ -34,7 +33,7 @@ def post_detail(request, post_id):
             new_comment.post = post
             new_comment.name = request.user
             new_comment.save()
-            messages.success(request, f'Your comment has been added')
+            messages.success(request, f'Your comment has been send to administrator to approve')
             comment_form = PostCommentForm()
     else:
         comment_form = PostCommentForm()

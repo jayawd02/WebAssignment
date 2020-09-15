@@ -13,7 +13,7 @@ class PostCreateForm(forms.ModelForm):
         }
 
 
-PostCreateFormSet = formset_factory(PostCreateForm, extra=2, max_num=2, min_num=1)
+#PostCreateFormSet = formset_factory(PostCreateForm, extra=2, max_num=2, min_num=1)
 
 
 class VideoCreateForm(forms.ModelForm):
