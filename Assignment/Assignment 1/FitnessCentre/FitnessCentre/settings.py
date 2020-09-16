@@ -29,7 +29,7 @@ SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'radiant-wildwood-35413.herokuapp.com',
+    'hidden-island-57153.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
