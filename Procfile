@@ -1,1 +1,1 @@
-web: gunicorn FitnessCentre.wsgi --log-file -
+web: gunicorn --chdir Assignment/Assignment1/FitnessCentre FitnessCentre.wsgi --log-file -
