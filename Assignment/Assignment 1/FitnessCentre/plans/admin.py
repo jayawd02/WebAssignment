@@ -50,3 +50,5 @@ admin.site.register(DietPlan,DietPlanAdmin)
 admin.site.register(Meal,MealAdmin)
 admin.site.register(WorkoutPlan,WorkoutPlanAdmin)
 admin.site.register(Exercise,ExerciseAdmin)
+
+#this is a test comment
