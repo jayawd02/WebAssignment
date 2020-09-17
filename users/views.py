@@ -49,4 +49,4 @@ def profile(request):
 
 def profile_view (request):
     #user = get_object_or_404(User, pk=request.user.id)
-    return render(request, 'users\profile_detail.html')
+    return render(request, 'users/profile_detail.html')
