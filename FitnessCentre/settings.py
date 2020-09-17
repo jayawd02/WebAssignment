@@ -87,42 +87,14 @@ WSGI_APPLICATION = 'FitnessCentre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# if os.environ.get('DATABASE_URL'):
-#     print ('using heroku')
-#     DATABASES={
-#         'default':dj_database_url.config(conn_max_age=600)
-#     }
-#
-# else:
-    #print('using local sqlite')
 # DATABASES = {
-#           'default': {
+#            'default': {
 #               'ENGINE': 'django.db.backends.sqlite3',
-#               'NAME': BASE_DIR / 'db.sqlite3',
-#       }
+#                'NAME': BASE_DIR / 'db.sqlite3',
+#        }
 # }
 
-# DATABASES = {
-#       'default': {
-#           'ENGINE': 'django.db.backends.postgresql',
-#           'NAME': 'fitnessappdb',
-#           'USER': 'fitnessuser',
-#           'PASSWORD': 'admin123',
-#           'HOST': 'localhost',
-#           'PORT': '',
-#       }
-# }
 
-DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.postgresql',
-          'NAME': 'd3khjjqpeb806s',
-          'USER': 'ikrcnqphzthjbb',
-          'PASSWORD': '6c8593b0b0b0d0947bc84f6ae028fcb4c4ede148febdd114ce7df3ae174429eb',
-          'HOST': 'ec2-100-25-100-81.compute-1.amazonaws.com',
-          'PORT': '5432',
-      }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -176,4 +148,7 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
