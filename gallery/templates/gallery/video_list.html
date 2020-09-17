@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for object in object_list %}
+        <article class="media content-section">
+            {% if object.thumbnail.url != null %}
+                <a class="mr-2" href="{{object.link}}"><img class="img-thumbnail video-img" src="{{ object.thumbnail.url }}"> </a>
+
+            {% endif %}
+
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{% url 'video-detail' object.id %}">{{ object.title }}</a>
+              <small class="text-muted">{{ object.type}}</small>
+            </div>
+            <p class="article-content">{{ object.description }}</p>
+          </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}

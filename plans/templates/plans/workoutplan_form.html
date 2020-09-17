@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Create Workout Plan{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" >
+            {% csrf_token %}
+            <fieldset class="form-group" >
+                <legend class="border-bottom mb-4"> Workout Plan {{ user.member.goal_set.first }}</legend>
+                    {{ form|crispy }}
+
+            </fieldset>
+            <div class="from-group">
+                <button type="submit" class="btn btn-outline-info">Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+

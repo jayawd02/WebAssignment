@@ -1,0 +1,11 @@
+{% block content %}
+        <div class="media-body ">
+            <div class="article-metadata"><H4>Membership Details</H4></div>
+                <p class="article-content">
+                    <div>Membership Plan : {{ user.member.membership_set.last.membership_plan }}</div>
+                    <div>Start date : {{user.member.membership_set.last.start_date }}</div>
+                    <div>End date : {{user.member.membership_set.last.end_date }}</div>
+                    <div>Fee : {{user.member.membership_set.last.final_fee }}</div>
+                </p>
+        </div>
+{% endblock %}

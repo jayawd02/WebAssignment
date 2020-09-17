@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ post.author.profile.profile_pic.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                {% if post.author == user %}
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}"> Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}"> Delete</a>
+                    </div>
+                {% endif %}
+            </div >
+            {% if post.image.url != null %}
+                    <img class="rounded float-left mr-2"  src="{{ post.image.url }}">
+            {% endif %}
+            <div class="mr-2">
+                <p class="article-content"> {{ post.content }}</p>
+            </div>
+
+          <div class="text-left">
+             <span class="pointer">
+                {% if request.user in post.likes.users.all%}
+                    <!-- already liked-->
+
+                    <a href="{% url 'post-vote' post_id=post.id opinion='like' %}">
+                        <i data-toggle="tooltip" data-placement="bottom" title="Unlike" class="thumbs up icon pr-2">
+                    <span>{{post.get_total_likes}}</span>
+                    </i>
+                    </a>
+                {% else %}
+                    <!--not liked-->
+                    <a href="{% url 'post-vote' post_id=post.id opinion='like' %}">
+                        <i data-toggle="tooltip" data-placement="bottom" title="Like" class="thumbs up outline icon">
+                    <span>{% if post.get_total_likes  %}{{post.get_total_likes}} {% else %} 0
+                    {% endif %}</span></i>
+                    </a>
+                {% endif %}
+             </span>
+             <span class="ml-3 pointer">
+             {% if request.user in post.dislikes.users.all %}
+
+                 <a href="{% url 'post-vote' post_id=post.id opinion='dislike' %}">
+                 <i data-toggle="tooltip" data-placement="bottom" title="I dislike this"  class="thumbs down icon">
+                 <span>{{post.get_total_dislikes}}</span></i>
+                 </a>
+             {% else %}
+                 <a href="{% url 'post-vote' post_id=post.id opinion='dislike' %}">
+                 <i data-toggle="tooltip" data-placement="bottom" title="I dislike this" class="thumbs down outline icon">
+                     <span> {% if  post.get_total_dislikes %} {{post.get_total_dislikes}}
+                 {% else %}  0 {% endif %} </span></i>
+
+                 </a>
+             {% endif %}
+             </span>
+          </div>
+
+
+          </div>
+        </article>
+            <div >
+             {% for comment in comments %}
+                <div class="comments" style="padding: 10px;">
+                  <p class="font-weight-bold">
+                    {{ comment.name }}
+                    <span class=" text-muted font-weight-normal">
+                      {{ comment.created_on }}
+                    </span>
+                  </p>
+                  {{ comment.comment | linebreaks }}
+                </div>
+            {% endfor %}
+            </div>
+
+
+            <div>
+                <form method="POST" >
+                   {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4"> Leave a comment</legend>
+                            {{ form|crispy }}
+                    </fieldset>
+                     <div class="from-group">
+                        <button type="submit" class="btn btn-outline-info">Add Comment</button>
+                    </div>
+                </form>
+            </div>
+{% endblock content %}

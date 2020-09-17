@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+        <article class="media content-section">
+          {% if object.thumbnail.url != null %}
+                <a class="mr-2" href="{{object.link}}"><img class="img-thumbnail video-img" src="{{ object.thumbnail.url }}"> </a>
+            {% endif %}
+          <div class="media-body">
+            <div class="article-metadata">
+              <H2>{{ object.title }}</H2>
+              <small class="text-muted">{{ object.type}}</small>
+                {% if object.posted_by == user %}
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'video-update' object.id %}"> Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'video-delete' object.id %}"> Delete</a>
+                    </div>
+                {% endif %}
+            </div >
+              <div class="mr-2">
+                <p class="article-content"> {{ object.description }}</p>
+            </div>
+          </div>
+        </article>
+{% endblock content %}
