@@ -29,7 +29,7 @@ SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'calm-temple-37388.herokuapp.com',
+    'damp-temple-36671.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
