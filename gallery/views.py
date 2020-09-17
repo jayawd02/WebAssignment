@@ -20,7 +20,7 @@ class PostListView(ListView):
 
 @login_required
 def post_detail(request, post_id):
-    template_name = 'gallery\post_detail.html'
+    template_name = 'gallery/post_detail.html'
     post = get_object_or_404(Post, pk=post_id)
     comments = post.comments.exclude(active=False).order_by('created_on')
     new_comment = None
@@ -48,7 +48,7 @@ def post_detail(request, post_id):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'gallery\post_form.html'
+    template_name = 'gallery/post_form.html'
     form_class = PostCreateForm
 
     def form_valid(self, form):  # pass the current logged in user as author to the model
@@ -107,7 +107,7 @@ class VideoDetailView(DetailView):
 
 # formset create video
 class VideoCreateView(FormView):
-    template_name = 'gallery\\video_form.html'
+    template_name = 'gallery/video_form.html'
     form_class = VideoCreateFormSet
     success_url = '/'
 
@@ -196,7 +196,7 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 class UpdatePostVote(LoginRequiredMixin, View):
-    template_name = 'gallery\post_detail.html'
+    template_name = 'gallery/post_detail.html'
 
 
     def get(self, request, *args, **kwargs):

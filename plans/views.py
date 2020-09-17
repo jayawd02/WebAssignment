@@ -55,7 +55,7 @@ class DietPlanDetailView(DetailView):
 
 class WorkoutPlanListView(ListView):
     model = WorkoutPlan
-    template_name = 'plans\goalworkoutplan_list.html'
+    template_name = 'plans/goalworkoutplan_list.html'
 
     def get_queryset(self):
         try:
