@@ -20,7 +20,8 @@ Sep 12 2020 | 8.30 pm|2h| 11.30 pm | Fixed bugs, added signal for user create, w
 Sep 13 2020 | 4 pm | 3h|12 am|Added like and unlike feature to posts. Created related models, and views and did migrations. updated post detail view to include the new buttons
 Sep 15 2020 | 7.30pm|2h | 11.15 pm| Created Json files with dumpdata. Added custom field in member admin  
 Sep 16 2020| 3.30 pm | 4h| 1:00 am | Worked to get the project pushed to Heroku. cames accorss issues due to folder structure. 
-Sep 17 2020 | 6 pm | 4h| 2.30 am | Worked on getting the heroku deployment done. Changed the folder structure, removed other django projects, hanged settings.py to include the postgress db. Added new test cases.
+Sep 17 2020 | 6 pm | 4h| 2.30 am | Worked on getting the heroku deployment done. Changed the folder structure, removed other django projects, hanged settings.py to include the postgress db. Added new test cases. Referred to the video series https://www.youtube.com/watch?v=0MrgsYswT1c for guidance
+Sep 18 2020 | 11.30 am|6h| 12.30 am | Added test cases. set up AWS S3 bucket . Referred to https://www.youtube.com/watch?v=kt3ZtW9MXhw&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=16 for guidance.https://stackoverflow.com/questions/59640100/valueerror-at-required-parameter-name-not-set helped to sort out the issues faced during this. Tested in local and then deployed changes to Heroku and tested. Obtained a domain name from name.com
 
 
 
