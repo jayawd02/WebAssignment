@@ -11,22 +11,22 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 import django_heroku
+import dj_database_url
 from pathlib import Path
 
-# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
-#SECRET_KEY= os.environ.get('SECRET_KEY') #todo uncomment for heroku
+#SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
+SECRET_KEY= os.environ.get('SECRET_KEY') #todo uncomment for heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  #todo uncomment for heroku
 ]
 
 ROOT_URLCONF = 'FitnessCentre.urls'
@@ -94,7 +95,7 @@ WSGI_APPLICATION = 'FitnessCentre.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': BASE_DIR / 'db.sqlite3',
+         'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
      }
 }
 
@@ -141,7 +142,7 @@ STATIC_URL = '/static/'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #todo uncomment for heroku
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -154,8 +155,17 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-import dj_database_url
 
-#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
 
-django_heroku.settings(locals())
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
+
+django_heroku.settings(locals()) #todo uncomment for heroku
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = False # rename same file names without overwrite
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
