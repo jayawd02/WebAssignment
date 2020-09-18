@@ -19,6 +19,9 @@ Sep 11 2020 | 10 pm| 2h| 12 .15 am | added comment model for post. Edited post d
 Sep 12 2020 | 8.30 pm|2h| 11.30 pm | Fixed bugs, added signal for user create, wrote 3 test cases
 Sep 13 2020 | 4 pm | 3h|12 am|Added like and unlike feature to posts. Created related models, and views and did migrations. updated post detail view to include the new buttons
 Sep 15 2020 | 7.30pm|2h | 11.15 pm| Created Json files with dumpdata. Added custom field in member admin  
+Sep 16 2020| 3.30 pm | 4h| 1:00 am | Worked to get the project pushed to Heroku. cames accorss issues due to folder structure. 
+Sep 17 2020 | 6 pm | 4h| 2.30 am | Worked on getting the heroku deployment done. Changed the folder structure, removed other django projects, hanged settings.py to include the postgress db. Added new test cases.
+
 
 
 
