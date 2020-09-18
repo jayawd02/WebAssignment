@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
-SECRET_KEY= os.environ.get('SECRET_KEY')
+SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
+#SECRET_KEY= os.environ.get('SECRET_KEY') #todo uncomment for heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True
+#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True') #todo uncomment for heroku
 
 
 ALLOWED_HOSTS = [
@@ -156,6 +156,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
 
 django_heroku.settings(locals())
