@@ -4,7 +4,7 @@ from django.urls import reverse, resolve
 
 from gallery.forms import PostCreateForm
 from gallery.views import post_detail, PostListView, PostCreateView, PostUpdateView, PostDeleteView
-from gallery.models import Post, PostComment, PostLike, PostDislike
+from gallery.models import Post, PostComment, PostLike, PostDislike, Video, Recipe
 
 
 # Create your tests here.
@@ -49,14 +49,13 @@ class TestUrls(SimpleTestCase):
 
 
 class TestViews(TestCase):
+    fixtures = ["user.json","post.json"]
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create(id=1, first_name='Test', last_name='test', username='user1')
-        self.post1 = Post.objects.create(id=1, content='This is test', author=self.user)
+        self.user = User.objects.get(pk=7)
+        self.post1 = Post.objects.get(pk=11)
         self.post_list_url = reverse('post-list')
-        self.post_detail_url = reverse('post-detail', args=[1])
-        self.post_delete_url = reverse('post-delete', args=[1])
-        self.post_create_url = reverse('post-create')
+        self.post_detail_url = reverse('post-detail', args=[11])
 
     def test_post_list_GET(self):
         response = self.client.get(self.post_list_url)
@@ -71,11 +70,14 @@ class TestViews(TestCase):
 
 
 class TestModels(TestCase):
+    fixtures = ["user.json", "post.json","video.json","recipe.json"]
+
     def setUp(self):
-        self.user3 = User.objects.create(id=3, first_name='Test', last_name='test', username='user3')
-        self.user4 = User.objects.create(id=4, first_name='Test', last_name='test', username='user4')
-        self.post3 = Post.objects.create(id=3, content='This is test post 3', author=self.user3)
-        self.post4 = Post.objects.create(id=4, content='This is test post 4', author=self.user4)
+        self.user3 = User.objects.get(pk=7)
+        self.user4 = User.objects.get(pk=8)
+        self.post3 = Post.objects.get(pk=11)
+        self.post4 = Post.objects.get(pk=12)
+
 
     def test_post_total_likes(self):
         users_set = [self.user3, self.user4]
@@ -89,6 +91,16 @@ class TestModels(TestCase):
         postdislike.users.set(users_set)
         self.assertEquals(self.post4.get_total_dislikes(), 2)
 
+    def test_should_create_post(self):
+        self.assertEqual(self.post3.content, "test post 1 , this is test")
+
+    def test_should_create_video(self):
+        video = Video.objects.get(pk=16)
+        self.assertEqual(video.title, "Home workout")
+
+    def test_should_create_recipe(self):
+        recipe = Recipe.objects.get(pk=3)
+        self.assertEqual(recipe.name, "Healthy Brownie")
 
 class TestForms(SimpleTestCase):
 

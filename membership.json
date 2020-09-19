@@ -1,1 +1,16 @@
-[{"model": "members.membership", "pk": 1, "fields": {"membership_plan": 1, "start_date": "2020-09-04", "end_date": "2021-09-03", "discount": "0.00", "final_fee": "1000.00", "members": [1]}}]
+[
+{
+    "model": "members.membership",
+    "pk": 1,
+    "fields": {
+        "membership_plan": 1,
+        "start_date": "2020-09-04",
+        "end_date": "2021-09-03",
+        "discount": "0.00",
+        "final_fee": "1000.00",
+        "members": [
+            1
+        ]
+    }
+}
+]

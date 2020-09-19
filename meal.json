@@ -1,1 +1,41 @@
-[{"model": "plans.meal", "pk": 1, "fields": {"name": "Rice and curry", "type": "Vegetarian", "category": "Main", "description": "100 g rice\r\nvegetable curry", "calories": 250, "date_created": "2020-09-08T09:25:45Z", "created_by": 1}}, {"model": "plans.meal", "pk": 2, "fields": {"name": "Air fried Fish", "type": "Seafood", "category": "Snack", "description": "60g of fish air fried", "calories": 150, "date_created": "2020-09-08T09:26:53Z", "created_by": 1}}, {"model": "plans.meal", "pk": 3, "fields": {"name": "peanuts", "type": "Vegetarian", "category": "Snack", "description": "10g peanuts", "calories": 50, "date_created": "2020-09-08T09:28:06Z", "created_by": 1}}]
+[
+{
+    "model": "plans.meal",
+    "pk": 1,
+    "fields": {
+        "name": "Rice and curry",
+        "type": "Vegetarian",
+        "category": "Main",
+        "description": "100 g rice\r\nvegetable curry",
+        "calories": 250,
+        "date_created": "2020-09-08T09:25:45Z",
+        "created_by": 1
+    }
+},
+{
+    "model": "plans.meal",
+    "pk": 2,
+    "fields": {
+        "name": "Air fried Fish",
+        "type": "Seafood",
+        "category": "Snack",
+        "description": "60g of fish air fried",
+        "calories": 150,
+        "date_created": "2020-09-08T09:26:53Z",
+        "created_by": 1
+    }
+},
+{
+    "model": "plans.meal",
+    "pk": 3,
+    "fields": {
+        "name": "peanuts",
+        "type": "Vegetarian",
+        "category": "Snack",
+        "description": "10g peanuts",
+        "calories": 50,
+        "date_created": "2020-09-08T09:28:06Z",
+        "created_by": 1
+    }
+}
+]

@@ -1,1 +1,104 @@
-[{"model": "plans.workoutplan", "pk": 1, "fields": {"goal": 1, "day": "Monday", "exercise": 1, "mins": 40, "rounds": null, "reps": null, "weight": null, "calories_burn": 100, "status": "Active", "date_created": "2020-09-08T09:37:50Z", "created_by": 1}}, {"model": "plans.workoutplan", "pk": 2, "fields": {"goal": 1, "day": "Tuesday", "exercise": 2, "mins": null, "rounds": 3, "reps": 12, "weight": null, "calories_burn": 100, "status": "Active", "date_created": "2020-09-08T09:38:30Z", "created_by": 1}}, {"model": "plans.workoutplan", "pk": 3, "fields": {"goal": 1, "day": "Thursday", "exercise": 1, "mins": 40, "rounds": null, "reps": null, "weight": null, "calories_burn": 100, "status": "Active", "date_created": "2020-09-08T09:38:54Z", "created_by": 1}}, {"model": "plans.workoutplan", "pk": 4, "fields": {"goal": 1, "day": "Thursday", "exercise": 2, "mins": null, "rounds": 3, "reps": 12, "weight": 12, "calories_burn": 100, "status": "Active", "date_created": "2020-09-08T09:39:15Z", "created_by": 1}}, {"model": "plans.workoutplan", "pk": 5, "fields": {"goal": 2, "day": "Wednesday", "exercise": 1, "mins": 40, "rounds": null, "reps": null, "weight": null, "calories_burn": 150, "status": "Active", "date_created": "2020-09-09T08:04:49.544Z", "created_by": null}}, {"model": "plans.workoutplan", "pk": 6, "fields": {"goal": 2, "day": "Friday", "exercise": 1, "mins": 30, "rounds": null, "reps": null, "weight": null, "calories_burn": 100, "status": "Active", "date_created": "2020-09-09T08:04:49.544Z", "created_by": null}}]
+[
+{
+    "model": "plans.workoutplan",
+    "pk": 1,
+    "fields": {
+        "goal": 1,
+        "day": "Monday",
+        "exercise": 1,
+        "mins": 40,
+        "rounds": null,
+        "reps": null,
+        "weight": null,
+        "calories_burn": 100,
+        "status": "Active",
+        "date_created": "2020-09-08T09:37:50Z",
+        "created_by": 1
+    }
+},
+{
+    "model": "plans.workoutplan",
+    "pk": 2,
+    "fields": {
+        "goal": 1,
+        "day": "Tuesday",
+        "exercise": 2,
+        "mins": null,
+        "rounds": 3,
+        "reps": 12,
+        "weight": null,
+        "calories_burn": 100,
+        "status": "Active",
+        "date_created": "2020-09-08T09:38:30Z",
+        "created_by": 1
+    }
+},
+{
+    "model": "plans.workoutplan",
+    "pk": 3,
+    "fields": {
+        "goal": 1,
+        "day": "Thursday",
+        "exercise": 1,
+        "mins": 40,
+        "rounds": null,
+        "reps": null,
+        "weight": null,
+        "calories_burn": 100,
+        "status": "Active",
+        "date_created": "2020-09-08T09:38:54Z",
+        "created_by": 1
+    }
+},
+{
+    "model": "plans.workoutplan",
+    "pk": 4,
+    "fields": {
+        "goal": 1,
+        "day": "Thursday",
+        "exercise": 2,
+        "mins": null,
+        "rounds": 3,
+        "reps": 12,
+        "weight": 12,
+        "calories_burn": 100,
+        "status": "Active",
+        "date_created": "2020-09-08T09:39:15Z",
+        "created_by": 1
+    }
+},
+{
+    "model": "plans.workoutplan",
+    "pk": 5,
+    "fields": {
+        "goal": 2,
+        "day": "Wednesday",
+        "exercise": 1,
+        "mins": 40,
+        "rounds": null,
+        "reps": null,
+        "weight": null,
+        "calories_burn": 150,
+        "status": "Active",
+        "date_created": "2020-09-09T08:04:49.544Z",
+        "created_by": null
+    }
+},
+{
+    "model": "plans.workoutplan",
+    "pk": 6,
+    "fields": {
+        "goal": 2,
+        "day": "Friday",
+        "exercise": 1,
+        "mins": 30,
+        "rounds": null,
+        "reps": null,
+        "weight": null,
+        "calories_burn": 100,
+        "status": "Active",
+        "date_created": "2020-09-09T08:04:49.544Z",
+        "created_by": null
+    }
+}
+]

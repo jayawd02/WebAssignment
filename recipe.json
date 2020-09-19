@@ -1,1 +1,77 @@
-[{"model": "gallery.recipe", "pk": 1, "fields": {"name": "Vegetarian Pizza", "type": "Vegetarian", "category": "Main", "description": "Healthy Pizza recipe", "recipe_image": "recipe_pics/pizza.jpg", "ingredients": "flour\r\nmilk\r\nvege", "prep_time": 30, "date_posted": "2020-09-06T06:14:28Z", "posted_by": 1}}, {"model": "gallery.recipe", "pk": 2, "fields": {"name": "Berry Smoothie", "type": "Vegan", "category": "Drink", "description": "Berry smoothie", "recipe_image": "recipe_pics/smootie.jpg", "ingredients": "berries\r\nmilk", "prep_time": 10, "date_posted": "2020-09-06T06:14:28Z", "posted_by": 2}}, {"model": "gallery.recipe", "pk": 3, "fields": {"name": "Healthy Brownie", "type": "Other", "category": "Dessert", "description": "chocolate brownie", "recipe_image": "recipe_pics/dessert.jpg", "ingredients": "milk\r\ncocoa powder", "prep_time": 30, "date_posted": "2020-09-06T06:14:28Z", "posted_by": 2}}, {"model": "gallery.recipe", "pk": 4, "fields": {"name": "Vegetable soup", "type": "Vegetarian", "category": "Soup", "description": "vegetable soup", "recipe_image": "recipe_pics/soup.jpg", "ingredients": "vegetables", "prep_time": 15, "date_posted": "2020-09-06T06:14:28Z", "posted_by": 3}}, {"model": "gallery.recipe", "pk": 5, "fields": {"name": "fresh vegetable salad", "type": "Vegetarian", "category": "Salad", "description": "fresh vegetable salad with seasonal veggies", "recipe_image": "recipe_pics/salad.jpg", "ingredients": "vegetables", "prep_time": 10, "date_posted": "2020-09-13T12:40:32.882Z", "posted_by": 2}}]
+[
+{
+    "model": "gallery.recipe",
+    "pk": 1,
+    "fields": {
+        "name": "Vegetarian Pizza",
+        "type": "Vegetarian",
+        "category": "Main",
+        "description": "Healthy Pizza recipe",
+        "recipe_image": "recipe_pics/pizza.jpg",
+        "ingredients": "flour\r\nmilk\r\nvege",
+        "prep_time": 30,
+        "date_posted": "2020-09-06T06:14:28Z",
+        "posted_by": 8
+    }
+},
+{
+    "model": "gallery.recipe",
+    "pk": 2,
+    "fields": {
+        "name": "Berry Smoothie",
+        "type": "Vegan",
+        "category": "Drink",
+        "description": "Berry smoothie",
+        "recipe_image": "recipe_pics/smootie.jpg",
+        "ingredients": "berries\r\nmilk",
+        "prep_time": 10,
+        "date_posted": "2020-09-06T06:14:28Z",
+        "posted_by": 8
+    }
+},
+{
+    "model": "gallery.recipe",
+    "pk": 3,
+    "fields": {
+        "name": "Healthy Brownie",
+        "type": "Other",
+        "category": "Dessert",
+        "description": "chocolate brownie",
+        "recipe_image": "recipe_pics/dessert.jpg",
+        "ingredients": "milk\r\ncocoa powder",
+        "prep_time": 30,
+        "date_posted": "2020-09-06T06:14:28Z",
+        "posted_by": 7
+    }
+},
+{
+    "model": "gallery.recipe",
+    "pk": 4,
+    "fields": {
+        "name": "Vegetable soup",
+        "type": "Vegetarian",
+        "category": "Soup",
+        "description": "vegetable soup",
+        "recipe_image": "recipe_pics/soup.jpg",
+        "ingredients": "vegetables",
+        "prep_time": 15,
+        "date_posted": "2020-09-06T06:14:28Z",
+        "posted_by": 7
+    }
+},
+{
+    "model": "gallery.recipe",
+    "pk": 5,
+    "fields": {
+        "name": "fresh vegetable salad",
+        "type": "Vegetarian",
+        "category": "Salad",
+        "description": "fresh vegetable salad with seasonal veggies",
+        "recipe_image": "recipe_pics/salad.jpg",
+        "ingredients": "vegetables",
+        "prep_time": 10,
+        "date_posted": "2020-09-13T12:40:32.882Z",
+        "posted_by": 7
+    }
+}
+]
