@@ -10,6 +10,7 @@ from .forms import PostCreateForm, VideoCreateFormSet, PostCommentForm
 from .models import Post, Video, Recipe, PostDislike, PostLike
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
 from django.views.generic.edit import FormView
+from sentry_sdk import capture_exception
 
 
 class PostListView(ListView):
@@ -210,11 +211,13 @@ class UpdatePostVote(LoginRequiredMixin, View):
             post.dislikes
         except Post.dislikes.RelatedObjectDoesNotExist as identifier:
             PostDislike.objects.create(post = post)
+            capture_exception(identifier)
 
         try:
             post.likes
         except Post.likes.RelatedObjectDoesNotExist as identifier:
             PostLike.objects.create(post = post)
+            capture_exception(identifier)
 
         if opinion.lower() == 'like':
 
