@@ -6,7 +6,7 @@ from django.views import generic
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, MemberUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.core.mail import send_mail
 
 
 def register(request):
@@ -14,7 +14,10 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            to_email= form.cleaned_data.get('email')
             username = form.cleaned_data.get('username')
+            send_mail('Welcome to Fitness Centre', 'Thank you for joining', 'fitnesscentre@example.com', [to_email],
+                      fail_silently=False)
             messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect("login")
     else:
