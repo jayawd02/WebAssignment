@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView
 
 from plans.forms import GoalUpdateForm, WorkoutPlanUpdateForm
 from plans.models import Goal, DietPlan, WorkoutPlan, Meal, Exercise
+from sentry_sdk import capture_exception
 
 
 class GoalListView(ListView):
@@ -60,8 +61,9 @@ class WorkoutPlanListView(ListView):
     def get_queryset(self):
         try:
             goal_set = Goal.objects.filter(status='Active', member=self.request.user.member)
-        except:
+        except Exception as e:
             goal_set = None
+            capture_exception(e)
 
         if goal_set != None:
             return WorkoutPlan.objects.select_related('exercise').filter(goal=goal_set.last()).order_by('day')
