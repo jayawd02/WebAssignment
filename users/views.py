@@ -16,7 +16,7 @@ def register(request):
             form.save()
             to_email= form.cleaned_data.get('email')
             username = form.cleaned_data.get('username')
-            send_mail('Welcome to Fitness Centre', 'Thank you for joining', 'fitnesscentre@example.com', ['senani28@yahoo.com'],
+            send_mail('Welcome to Fitness Centre', 'Thank you for joining', 'admin@example.com', ['senani28@yahoo.com'],
                       fail_silently=False)
             messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect("login")
