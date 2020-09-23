@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
 
+from .tasks import send_joinemail
+
 
 def register(request):
     if request.method == "POST":
@@ -16,8 +18,8 @@ def register(request):
             form.save()
             to_email= form.cleaned_data.get('email')
             username = form.cleaned_data.get('username')
-            send_mail('Welcome to Fitness Centre', 'Thank you for joining!', 'jayawd02@myunitec.ac.nz', [to_email],
-                      fail_silently=False)
+            #send_mail('Welcome to Fitness Centre', 'Thank you for joining!', 'jayawd02@myunitec.ac.nz', [to_email],fail_silently=False)
+            send_joinemail(to_email) # use celery task to send email
             messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect("login")
     else:
