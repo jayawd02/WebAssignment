@@ -160,8 +160,6 @@ LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-
-
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
 
 django_heroku.settings(locals()) #todo uncomment for heroku
@@ -202,6 +200,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 sentry_sdk.init(
-    dsn=os.environ['SENTRY_DSN'],
-    integrations=[DjangoIntegration()]
+     dsn=os.environ['SENTRY_DSN'],
+     integrations=[DjangoIntegration()]
 )

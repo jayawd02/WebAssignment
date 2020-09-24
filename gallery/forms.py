@@ -5,12 +5,12 @@ from gallery.models import Post, Video, PostComment
 
 
 class PostCreateForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['content', 'image']
-        widgets = {
-            'content': forms.Textarea(attrs={'rows': 5, 'cols': 25}),
-        }
+     class Meta:
+         model = Post
+         fields = ['content', 'image']
+         widgets = {
+             'content': forms.Textarea(attrs={'rows': 5, 'cols': 25}),
+         }
 
 
 #PostCreateFormSet = formset_factory(PostCreateForm, extra=2, max_num=2, min_num=1)
@@ -25,7 +25,7 @@ class VideoCreateForm(forms.ModelForm):
         }
 
 
-VideoCreateFormSet = formset_factory(VideoCreateForm, extra=3, max_num=3, min_num=1)
+VideoCreateFormSet = formset_factory(VideoCreateForm, extra=2, max_num=2, min_num=1)
 
 
 

@@ -114,9 +114,10 @@ class VideoCreateView(FormView):
 
     def form_valid(self, form):  # pass the current logged in user as author to the model
         for form in form:
-            form.instance.posted_by = self.request.user
-            form.save()
-        messages.success(self.request, f'Your video has been added!')
+            if form.instance.title != "":
+                form.instance.posted_by = self.request.user
+                form.save()
+        messages.success(self.request, f'Your video(s) has been added!')
         return super(VideoCreateView, self).form_valid(form)
 
 
