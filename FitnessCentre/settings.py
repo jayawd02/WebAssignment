@@ -191,8 +191,11 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 
+
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL='jayawd02@myunitec.ac.nz'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
@@ -200,6 +203,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 sentry_sdk.init(
-     dsn=os.environ['SENTRY_DSN'],
-     integrations=[DjangoIntegration()]
+      dsn=os.environ['SENTRY_DSN'],
+      integrations=[DjangoIntegration()]
 )
