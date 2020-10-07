@@ -1,2 +1,2 @@
 # web-assignment
-Put your code for 7420 here.
+Refer to Readme file in Assignment\assignment 1 folder
