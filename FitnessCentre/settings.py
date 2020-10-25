@@ -28,8 +28,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
-SECRET_KEY= os.environ.get('SECRET_KEY') #todo uncomment for heroku
+SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
+#SECRET_KEY= os.environ.get('SECRET_KEY') #todo uncomment for heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -161,9 +161,9 @@ LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
 
-django_heroku.settings(locals()) #todo uncomment for heroku
+#django_heroku.settings(locals()) #todo uncomment for heroku
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -181,11 +181,11 @@ CACHES = {
     }
 }
 
-#CELERY_BROKER_URL = 'redis://localhost:6379'
-#CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-CELERY_BROKER_URL=os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
+#CELERY_BROKER_URL=os.environ['REDIS_URL']
+#CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
 
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -203,7 +203,7 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-sentry_sdk.init(
-      dsn=os.environ['SENTRY_DSN'],
-      integrations=[DjangoIntegration()]
-)
+# sentry_sdk.init(
+#       dsn=os.environ['SENTRY_DSN'],
+#       integrations=[DjangoIntegration()]
+# )

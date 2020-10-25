@@ -5,18 +5,42 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.views.generic.base import View
-
-from .forms import PostCreateForm, VideoCreateFormSet, PostCommentForm
-from .models import Post, Video, Recipe, PostDislike, PostLike
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
 from django.views.generic.edit import FormView
 from sentry_sdk import capture_exception
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from .forms import PostCreateForm, VideoCreateFormSet, PostCommentForm
+from .models import Post, Video, Recipe, PostDislike, PostLike
+from .serializers import PostSerializer,VideoSerializer,RecipeSerializer,PostCommentSerializer,PostLikeSerializer,PostDislikeSerializer
 
 
-class PostListView(ListView):
-    model = Post
-    ordering = ['-date_posted']  # order the posts newest at top
-    paginate_by = 10
+class PostListView(APIView):
+
+    def get(self, request, format=None):
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+# class PostListView(ListView):
+#     model = Post
+#     ordering = ['-date_posted']  # order the posts newest at top
+#     paginate_by = 10
+
+
 
 
 @login_required
@@ -49,14 +73,14 @@ def post_detail(request, post_id):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'gallery/post_form.html'
-    form_class = PostCreateForm
+     template_name = 'gallery/post_form.html'
+     form_class = PostCreateForm
 
-    def form_valid(self, form):  # pass the current logged in user as author to the model
-        form.instance.author = self.request.user
-        form.save()
-        messages.success(self.request, f'Your post has been created!')
-        return super(PostCreateView, self).form_valid(form)
+     def form_valid(self, form):  # pass the current logged in user as author to the model
+         form.instance.author = self.request.user
+         form.save()
+         messages.success(self.request, f'Your post has been created!')
+         return super(PostCreateView, self).form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,

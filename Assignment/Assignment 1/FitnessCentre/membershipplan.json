@@ -1,1 +1,0 @@
-[{"model": "members.membershipplan", "pk": 1, "fields": {"plan_name": "Yearly Individual", "plan_type": "Individual", "duration": "3-months", "fee": "100.00", "status": "Active"}}, {"model": "members.membershipplan", "pk": 2, "fields": {"plan_name": "Monthly Individual", "plan_type": "Individual", "duration": "1-month", "fee": "10.00", "status": "Active"}}]
