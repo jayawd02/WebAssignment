@@ -5,11 +5,18 @@ Architecture:
 
 Version Control:
 
-- What is git and what is it used for?
+- What is git and what is it used for? 
+    It is a distributed version controling system and is used for tracking changes. Can you to track changes to source code while developing software
 - List 3 git commands you’ve learned in this course.
+    git add <filename>
+    git commit -m "Commit message"
+    git push origin <branch>
 - What is GitHub and what is it used for?
+    It provides hosting for software development and version control using Git
 - What is Kanban and what is it used for?
+    It is a workflow managament method and used as a tool for Agile software development.
 - What is Markdown and what is it used for?
+    It is a markup language with plain-text-formatting syntax. Used to format files like Readme files
 
 Platform vs Infrastructure:
 
