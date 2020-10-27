@@ -2,225 +2,75 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib import messages
 from django.views.generic.base import View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # to chk whether user is logged in
-from django.views.generic.edit import FormView
 from sentry_sdk import capture_exception
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
-from .forms import PostCreateForm, VideoCreateFormSet, PostCommentForm
-from .models import Post, Video, Recipe, PostDislike, PostLike
+from rest_framework import viewsets
+from rest_framework import permissions
+from .models import Post, Video, Recipe,PostComment, PostDislike, PostLike
 from .serializers import PostSerializer,VideoSerializer,RecipeSerializer,PostCommentSerializer,PostLikeSerializer,PostDislikeSerializer
-
-
-class PostListView(APIView):
-
-    def get(self, request, format=None):
-        posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from .permissions import IsOwnerOrReadOnly
 
 
 
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
-# class PostListView(ListView):
-#     model = Post
-#     ordering = ['-date_posted']  # order the posts newest at top
-#     paginate_by = 10
-
-
-
-
-@login_required
-def post_detail(request, post_id):
-    template_name = 'gallery/post_detail.html'
-    post = get_object_or_404(Post, pk=post_id)
-    comments = post.comments.exclude(active=False).order_by('created_on')
-    new_comment = None
-
-    if request.method == 'POST':
-        comment_form = PostCommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            comment_form.instance.name = request.user
-            new_comment.post = post
-            new_comment.name = request.user
-            new_comment.save()
-            messages.success(request, f'Your comment has been send to administrator to approve')
-            comment_form = PostCommentForm()
-    else:
-        comment_form = PostCommentForm()
-
-    context = {'post': post,
-               'comments': comments,
-               'new_comment': new_comment,
-               'form': comment_form}
-    return render(request, template_name, context)
+    def perform_create(self, serializer):
+        serializer.save(posted_by=self.request.user)
 
 
 
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-     template_name = 'gallery/post_form.html'
-     form_class = PostCreateForm
+    def perform_create(self, serializer):
+        serializer.save(posted_by=self.request.user)
 
-     def form_valid(self, form):  # pass the current logged in user as author to the model
-         form.instance.author = self.request.user
-         form.save()
-         messages.success(self.request, f'Your post has been created!')
-         return super(PostCreateView, self).form_valid(form)
+class VideoViewSet(viewsets.ModelViewSet):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
+    def perform_create(self, serializer):
+        serializer.save(posted_by=self.request.user)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,
-                     UpdateView):  # test whether user is logged in and as same as te authour of the post
-    model = Post
-    fields = ['content', 'image']
+class PostCommentViewSet(viewsets.ModelViewSet):
+    queryset = PostComment.objects.all()
+    serializer_class = PostCommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        messages.success(self.request, f'Your post has been updated!')
-        return super().form_valid(form)
+    def perform_create(self, serializer):
+        serializer.save(name=self.request.user)
 
-    def test_func(self):  # checking user is same as author
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+class PostLikeViewset(viewsets.ModelViewSet):
+    queryset = PostLike.objects.all()
+    serializer_class = PostLikeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
+    def perform_create(self, serializer):
+        serializer.save(users=self.request.user)
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Post
-    success_url = '/'
+class PostDislikeViewset(viewsets.ModelViewSet):
+    queryset = PostDislike.objects.all()
+    serializer_class = PostDislikeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
-
-
-class VideoListView(ListView):
-    model = Video
-    ordering = ['-date_posted']
-    paginate_by = 10
-
-
-class VideoDetailView(DetailView):
-    model = Video
+    def perform_create(self, serializer):
+        serializer.save(users=self.request.user)
 
 
-# class VideoCreateView(LoginRequiredMixin, CreateView):
-#     model = Video
-#     fields = ['title', 'description', 'type', 'thumbnail', 'link']
-#
-#     def form_valid(self, form):
-#         form.instance.posted_by = self.request.user
-#         messages.success(self.request, f'Your video has been added!')
-#         return super(VideoCreateView, self).form_valid(form)
-
-# formset create video
-class VideoCreateView(FormView):
-    template_name = 'gallery/video_form.html'
-    form_class = VideoCreateFormSet
-    success_url = '/'
-
-    def form_valid(self, form):  # pass the current logged in user as author to the model
-        for form in form:
-            if form.instance.title != "":
-                form.instance.posted_by = self.request.user
-                form.save()
-        messages.success(self.request, f'Your video(s) has been added!')
-        return super(VideoCreateView, self).form_valid(form)
-
-
-class VideoUpdateView(LoginRequiredMixin, UserPassesTestMixin,
-                      UpdateView):  # test whether user is logged in and as same as the authour of the post
-    model = Video
-    fields = ['title', 'description', 'type', 'thumbnail', 'link']
-
-    def form_valid(self, form):
-        form.instance.posted_by = self.request.user
-        messages.success(self.request, f'Your video has been updated!')
-        return super().form_valid(form)
-
-    def test_func(self):  # checking user is same as author
-        video = self.get_object()
-        if self.request.user == video.posted_by:
-            return True
-        return False
-
-
-class VideoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Video
-    success_url = '/'
-
-    def test_func(self):
-        video = self.get_object()
-        if self.request.user == video.posted_by:
-            return True
-        return False
-
-
-class RecipeListView(ListView):
-    model = Recipe
-    ordering = ['-date_posted']
-    paginate_by = 10
-
-
-class RecipeDetailView(DetailView):
-    model = Recipe
-
-
-class RecipeCreateView(LoginRequiredMixin, CreateView):
-    model = Recipe
-    fields = ['name', 'type', 'category', 'description', 'recipe_image', 'ingredients', 'prep_time']
-
-    def form_valid(self, form):
-        form.instance.posted_by = self.request.user
-        messages.success(self.request, f'Your recipe has been created!')
-        return super(RecipeCreateView, self).form_valid(form)
-
-
-class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin,
-                       UpdateView):  # test whether user is logged in and as same as the authour of the post
-    model = Recipe
-    fields = ['name', 'type', 'category', 'description', 'recipe_image', 'ingredients', 'prep_time']
-
-    def form_valid(self, form):
-        form.instance.posted_by = self.request.user
-        messages.success(self.request, f'Your recipe has been updated!')
-        return super().form_valid(form)
-
-    def test_func(self):  # checking user is same as author
-        recipe = self.get_object()
-        if self.request.user == recipe.posted_by:
-            return True
-        return False
-
-
-class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Recipe
-    success_url = '/'
-
-    def test_func(self):
-        recipe = self.get_object()
-        if self.request.user == recipe.posted_by:
-            return True
-        return False
-
-
+#todo Need to serialize
 class UpdatePostVote(LoginRequiredMixin, View):
     template_name = 'gallery/post_detail.html'
 

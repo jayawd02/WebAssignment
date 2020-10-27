@@ -44,7 +44,7 @@ class Recipe(models.Model):
 class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add= True) #auto_now_add= True. date modified ->auto_now=True
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True, upload_to='post_pics')
 
     def get_total_likes(self):

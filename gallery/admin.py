@@ -16,9 +16,9 @@ class RecipeAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
-    fields = ['author','content', 'image']
-    list_display = ('author','date_posted','content')
-    list_filter = ['author', 'date_posted']
+    fields = ['posted_by','content', 'image']
+    list_display = ('posted_by','date_posted','content')
+    list_filter = ['posted_by', 'date_posted']
     search_fields = ['content']
 
 

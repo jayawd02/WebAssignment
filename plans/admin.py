@@ -13,7 +13,6 @@ class DietPlanInLine (admin.TabularInline):
     extra = 7
 
 class GoalAdmin(admin.ModelAdmin):
-    #fields = ['author','content', 'image']
     list_display = ('member','type','status','date_created','created_by')
     list_filter = ['member', 'status']
     search_fields = ['member']

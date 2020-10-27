@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
     'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -207,3 +208,9 @@ EMAIL_USE_TLS = True
 #       dsn=os.environ['SENTRY_DSN'],
 #       integrations=[DjangoIntegration()]
 # )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
