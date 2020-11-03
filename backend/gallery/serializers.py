@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from gallery.models import Video, Post, Recipe, PostComment, PostLike, PostDislike
+from users.models import Profile
 
 
 class VideoSerializer(serializers.ModelSerializer):
     posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
+    #profile_pic = serializers.PrimaryKeyRelatedField(many=True, queryset=Profile.objects.all())
 
     class Meta:
         model = Video

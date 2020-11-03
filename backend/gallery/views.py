@@ -36,8 +36,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 class VideoViewSet(viewsets.ModelViewSet):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+    permission_classes = [permissions.AllowAny]
+    ##permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                         ## IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(posted_by=self.request.user)
