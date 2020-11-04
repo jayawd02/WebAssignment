@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Goal, Meal, DietPlan, Exercise, WorkoutPlan
+from plans.models import Goal, Meal, DietPlan, Exercise, WorkoutPlan
 
 
 class GoalSerializer(serializers.ModelSerializer):

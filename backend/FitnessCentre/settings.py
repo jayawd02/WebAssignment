@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
     'rest_framework',
-    ##'rest_framework.authtoken'
+    ##'knox',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -211,11 +212,12 @@ EMAIL_USE_TLS = True
 #       integrations=[DjangoIntegration()]
 # )
 
-##REST_FRAMEWORK = {
-  #  'DEFAULT_AUTHENTICATION_CLASSES': [
-   #     'rest_framework.authentication.TokenAuthentication',
-    #]
-#}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',

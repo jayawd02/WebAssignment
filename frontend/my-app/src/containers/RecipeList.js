@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Recipe from './Recipe'
+import Recipe from '../components/Recipe'
 
 class RecipeList extends Component{
   constructor(props) {
@@ -17,7 +17,7 @@ class RecipeList extends Component{
   fetchRecipes(){
     console.log('fetching..')
 
-    fetch("http://localhost:8000/gallery/recipes")
+    fetch("http://localhost:8000/gallery/api/recipes")
         .then(response => response.json())
         .then (data =>
         this.setState({

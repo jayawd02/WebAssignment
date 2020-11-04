@@ -7,18 +7,8 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, MemberUp
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
-from rest_framework import viewsets
+
 from .tasks import send_joinemail
-from .models import Profile
-from .serializers import ProfileSerializer
-
-
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-
-
-
 
 
 def register(request):

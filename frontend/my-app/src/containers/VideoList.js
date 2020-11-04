@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Video from './Video'
+import Video from '../components/Video'
 
 class VideoList extends Component{
   constructor(props) {
@@ -17,7 +17,7 @@ class VideoList extends Component{
   fetchVideos(){
     console.log('fetching..')
 
-    fetch("http://localhost:8000/gallery/videos")
+    fetch("http://localhost:8000/gallery/api/videos")
         .then(response => response.json())
         .then (data =>
         this.setState({

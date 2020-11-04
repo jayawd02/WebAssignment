@@ -1,16 +1,8 @@
 from django.urls import path,include
-from rest_framework.routers import DefaultRouter
+
 from . import views
 
-router = DefaultRouter()
-router.register(r'members', views.MemberViewSet)
-router.register(r'membershipplans', views.MembershipPlanViewSet)
-router.register(r'memberships', views.MembershipViewSet)
-
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include('members.api.urls')),
+    path('', views.index, name='index'),
 ]
-
-# urlpatterns = [
-#     path('', views.index, name='index'),
-# ]

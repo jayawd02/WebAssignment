@@ -1,11 +1,9 @@
-from django.urls import path,include
-from rest_framework.routers import DefaultRouter
+from django.urls import path, include
+
 from . import views
 
-router = DefaultRouter()
-router.register(r'pofiles', views.ProfileViewSet)
-
-
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include('users.api.urls')),
+    #path('register/', views.register, name='register'),
+    #path('', include('django.contrib.auth.urls')),
 ]

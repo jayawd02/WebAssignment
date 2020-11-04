@@ -5,6 +5,8 @@ boto3==1.15.0
 botocore==1.18.0
 celery==4.4.7
 certifi==2020.6.20
+cffi==1.14.3
+cryptography==3.2.1
 dj-database-url==0.5.0
 Django==3.1.1
 django-celery-beat==2.0.0
@@ -13,6 +15,7 @@ django-cors-headers==3.5.0
 django-crispy-forms==1.9.2
 django-heroku==0.3.1
 django-redis-cache==2.1.1
+django-rest-knox==4.1.0
 django-storages==1.10.1
 django-timezone-field==4.0
 djangorestframework==3.12.1
@@ -21,6 +24,7 @@ jmespath==0.10.0
 kombu==4.6.11
 Pillow==7.2.0
 psycopg2==2.8.6
+pycparser==2.20
 python-crontab==2.5.1
 python-dateutil==2.8.1
 python-http-client==3.3.1

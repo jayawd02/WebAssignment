@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Member,Membership,MembershipPlan
+from members.models import Member,Membership,MembershipPlan
+
 
 class MemberSerializer(serializers.ModelSerializer):
 
@@ -22,8 +22,3 @@ class MembershipSerializer (serializers.ModelSerializer):
         fields = ['id','membership_plan','members','start_date','end_date','discount','final_fee']
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email']
