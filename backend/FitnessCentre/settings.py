@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'django_celery_results',
     'rest_framework',
     ##'knox',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'rest_auth'
 ]
 
 MIDDLEWARE = [
@@ -213,9 +214,9 @@ EMAIL_USE_TLS = True
 # )
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+         'rest_framework.authentication.TokenAuthentication',
+     ]
 }
 
 

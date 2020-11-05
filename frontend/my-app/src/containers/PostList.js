@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Post from '../components/Post'
+import PostForm from '../components/PostForm'
 import axios from 'axios'
 
 class PostList extends Component{
@@ -8,7 +9,6 @@ class PostList extends Component{
     this.state = {
       postList: []
     }
-
   }
 
   componentDidMount() {
@@ -17,7 +17,6 @@ class PostList extends Component{
           this.setState({
             postList :res.data
           })
-          console.log(res.data)
         })
   }
 
@@ -26,6 +25,9 @@ class PostList extends Component{
   render(){
     return (
       <div>
+        <h2> Create New Post</h2>
+        <PostForm requestType="post" postID={null} btnText="Create"/>
+        <br/>
         <h1> Post List </h1>
         <Post data={this.state.postList}/>
       </div>

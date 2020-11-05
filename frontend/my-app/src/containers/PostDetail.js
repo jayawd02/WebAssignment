@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {Card} from 'antd'
+import {Card,Button} from 'antd'
+import PostForm from "../components/PostForm"
 
 class PostDetail extends Component{
   constructor(props) {
@@ -21,6 +22,13 @@ class PostDetail extends Component{
         })
   }
 
+  handleDelete= (event) => {
+        const postID = this.props.match.params.postID
+        axios.delete(`http://localhost:8000/gallery/api/posts/${postID}`)
+        this.props.history.push('/')
+        this.forceUpdate()
+  }
+
 
 
   render(){
@@ -28,6 +36,9 @@ class PostDetail extends Component{
       <div>
         <h1> Post Detail </h1>
             <Card title={this.state.post.posted_by}>
+                <form onSubmit={this.handleDelete}>
+                    <Button htmlType="submit" type="danger">Delete</Button>
+                </form>
                 <p>{this.state.post.content} </p>
                 <img
                     width={272}
@@ -35,6 +46,8 @@ class PostDetail extends Component{
                     src={this.state.post.image}
                   />
             </Card>
+
+          <PostForm requestType="put" postID={this.props.match.params.postID} btnText="Update"/>
       </div>
     )
   }

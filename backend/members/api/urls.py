@@ -11,6 +11,3 @@ urlpatterns = [
     path('', include(router.urls)),
 ]
 
-# urlpatterns = [
-#     path('', views.index, name='index'),
-# ]

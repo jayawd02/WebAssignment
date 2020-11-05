@@ -1,6 +1,6 @@
 import React from 'react'
-import { List, Avatar, Space } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { List, Avatar, Space } from 'antd'
+import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
 
 
 const IconText = ({ icon, text }) => (
@@ -8,7 +8,7 @@ const IconText = ({ icon, text }) => (
     {React.createElement(icon)}
     {text}
   </Space>
-);
+)
 
 const Post = (props)=> {
     return (
@@ -24,7 +24,7 @@ const Post = (props)=> {
             dataSource={props.data}
             renderItem={item => (
               <List.Item
-                key={item.title}
+                key={item.id}
                 actions={[
                   <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
                   <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,

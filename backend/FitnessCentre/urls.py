@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='members/home.html'), name='home'),
+    path('rest-auth/', include('rest_auth.urls')),
     path('api-token-auth/', views.obtain_auth_token),
 ]
 

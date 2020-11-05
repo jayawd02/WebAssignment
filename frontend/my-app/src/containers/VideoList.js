@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 import Video from '../components/Video'
+import axios from 'axios'
+
+import VideoForm from '../components/VideoForm'
+
 
 class VideoList extends Component{
   constructor(props) {
@@ -7,35 +11,27 @@ class VideoList extends Component{
     this.state = {
       videoList: []
     }
-    this.fetchVideos=this.fetchVideos.bind(this)
   }
 
-  componentWillMount() {
-    this.fetchVideos()
-  }
-
-  fetchVideos(){
-    console.log('fetching..')
-
-    fetch("http://localhost:8000/gallery/api/videos")
-        .then(response => response.json())
-        .then (data =>
-        this.setState({
-          videoList: data
+  componentDidMount() {
+    axios.get('http://localhost:8000/gallery/api/videos')
+        .then (res => {
+          this.setState({
+            videoList :res.data
+          })
+          console.log(res.data)
         })
-        )
-
   }
+
 
   render(){
-    var videos= this.state.videoList
-    const videoList =videos.map(video=> <Video key={video.id} video={video}/>)
     return (
       <div>
-        <h1> Video List </h1>
-          <div>{videoList}</div>
-
-
+        <h2>Create Video</h2>
+        <br/>
+        <VideoForm/>
+        <h1> Post List </h1>
+        <Video data={this.state.videoList}/>
       </div>
     )
   }
