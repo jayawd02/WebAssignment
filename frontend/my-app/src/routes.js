@@ -7,17 +7,28 @@ import PostDetail from "./containers/PostDetail"
 import PostForm from "./components/PostForm"
 import Login from './containers/Login'
 import Signup from './containers/Signup'
+import Home from './containers/Home'
+import ProfileDetail from './containers/ProfileDetail'
+import RecipeForm from './components/RecipeForm'
+import RecipeDetail from './containers/RecipeDetail'
+import VideoForm from './components/VideoForm'
+import VideoDetail from './containers/VideoDetail'
 
 const BaseRouter = () => (
     <div>
-        <Route exact path='/' component={PostList} />
+        <Route exact path='/' component={Home} />
         <Route exact path='/posts' component={PostList} />
         <Route exact path='/videos' component={VideoList} />
         <Route exact path='/recipes' component={RecipeList} />
         <Route exact path='/posts/:postID' component={PostDetail} />
         <Route exact path='/post/new' component={PostForm} />
+        <Route exact path='/videos/:videoID' component={VideoDetail} />
+        <Route exact path='/video/new' component={VideoForm} />
+        <Route exact path='/recipes/:recipeID' component={RecipeDetail} />
+        <Route exact path='/recipe/new' component={RecipeForm} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/signup' component={Signup} />
+        <Route exact path='/profile/:memberID' component={ProfileDetail} />
 
     </div>
 

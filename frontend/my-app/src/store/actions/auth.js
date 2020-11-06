@@ -23,6 +23,7 @@ export const authFail = error => {
 
 export const logout =() => {
   localStorage.removeItem('user')
+  localStorage.removeItem('token')
   localStorage.removeItem('expirationDate')
   return{
     type: actionTypes.AUTH_LOGOUT
@@ -100,6 +101,22 @@ export const   authCheckState = () => {
             }
         }
     }
+}
+
+export const loadMember = (memberID) => async (dispatch, getState) => {
+  dispatch({ type: actionTypes.MEMBER_LOADING });
+
+  try {
+    const res = await axios.get(`http://127.0.0.1:8000/members/api/members/$memberID` )
+    dispatch({
+      type: actionTypes.MEMBER_LOADED,
+      payload: res.data
+    })
+  } catch (err) {
+    dispatch({
+      type: actionTypes.AUTH_FAIL
+    })
+  }
 }
 
 

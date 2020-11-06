@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import {Card,Button} from 'antd'
 import PostForm from "../components/PostForm"
+import {connect} from 'react-redux'
+import Post from "../components/Post";
 
 class PostDetail extends Component{
   constructor(props) {
@@ -11,22 +12,39 @@ class PostDetail extends Component{
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const postID = this.props.match.params.postID
-    axios.get(`http://localhost:8000/gallery/api/posts/${postID}`)
-        .then (res => {
-          this.setState({
-            post :res.data
-          })
-            console.log(res.data)
-        })
+    const token = localStorage.getItem("token")
+
+    const response = await fetch(`http://localhost:8000/gallery/api/posts/${postID}`,{Authorization: {token}})
+    const responseJson = await response.json()
+
+    if (response.ok) {
+      this.setState({
+        post :responseJson
+      })
+    } else {
+      this.setState({
+        error: true,
+      })
+    }
   }
 
   handleDelete= (event) => {
         const postID = this.props.match.params.postID
-        axios.delete(`http://localhost:8000/gallery/api/posts/${postID}`)
+        const token = localStorage.getItem("token")
+
+        fetch(`http://localhost:8000/gallery/api/posts/${postID}`,{method:'DELETE',Authorization: {token}})
         this.props.history.push('/')
         this.forceUpdate()
+  }
+
+  handleTokenNotNull =()=>{
+      if (this.state.token !==null){
+          return true
+      }else{
+          return false
+      }
   }
 
 
@@ -47,9 +65,22 @@ class PostDetail extends Component{
                   />
             </Card>
 
-          <PostForm requestType="put" postID={this.props.match.params.postID} btnText="Update"/>
+                {
+                    this.handleTokenNotNull() ?
+                          <PostForm requestType="put" postID={this.props.match.params.postID} btnText="Update"/>
+                    :
+                        <h3> You are not authorized to edit this post </h3>
+                }
+          {console.log (this.handleTokenNotNull())}
+
       </div>
     )
   }
 }
-export default PostDetail
+
+const mapStateToProps= state =>{
+    return{
+        token: state.token
+    }
+}
+export default connect(mapStateToProps)(PostDetail)

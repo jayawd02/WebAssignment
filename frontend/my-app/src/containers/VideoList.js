@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import Video from '../components/Video'
 import axios from 'axios'
-
 import VideoForm from '../components/VideoForm'
+
 
 
 class VideoList extends Component{
@@ -29,8 +29,8 @@ class VideoList extends Component{
       <div>
         <h2>Create Video</h2>
         <br/>
-        <VideoForm/>
-        <h1> Post List </h1>
+        <VideoForm requestType="post" postID={null} btnText="Create"/>
+        <h1> Video List </h1>
         <Video data={this.state.videoList}/>
       </div>
     )

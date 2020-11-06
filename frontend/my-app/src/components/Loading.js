@@ -1,7 +1,18 @@
 import React from "react"
+import { Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+
+const Loading = () =>{
+    return(
+        <div>
+            <h1> Loading ... </h1>
+            <Spin indicator={antIcon} />
+        </div>
+    )
+}
 
 
-const Loading = () =>
-  <h1> Loading ... </h1>
 
 export default Loading

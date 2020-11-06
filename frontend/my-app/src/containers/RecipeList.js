@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 import Recipe from '../components/Recipe'
+import axios from 'axios'
+import RecipeForm from "../components/RecipeForm"
+
+
 
 class RecipeList extends Component{
   constructor(props) {
@@ -7,33 +11,27 @@ class RecipeList extends Component{
     this.state = {
       recipeList: []
     }
-    this.fetchrecipes=this.fetchRecipes.bind(this)
+
   }
 
-  componentWillMount() {
-    this.fetchRecipes()
-  }
-
-  fetchRecipes(){
-    console.log('fetching..')
-
-    fetch("http://localhost:8000/gallery/api/recipes")
-        .then(response => response.json())
-        .then (data =>
-        this.setState({
-          recipeList: data
+  componentDidMount() {
+    axios.get('http://localhost:8000/gallery/api/recipes')
+        .then (res => {
+          this.setState({
+            recipeList :res.data
+          })
+          console.log(res.data)
         })
-        )
-
   }
 
   render(){
-    var recipes= this.state.recipeList
-    const recipeList =recipes.map(recipe=> <Recipe key={recipe.id} recipe={recipe}/>)
     return (
       <div>
+        <h2>Create Recipe</h2>
+        <br/>
+        <RecipeForm requestType="post" postID={null} btnText="Create"/>
         <h1> Recipe List </h1>
-          <div>{recipeList}</div>
+        <Recipe data={this.state.recipeList}/>
       </div>
     )
   }

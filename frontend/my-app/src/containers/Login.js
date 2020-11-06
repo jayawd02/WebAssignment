@@ -1,17 +1,17 @@
 import React from 'react'
-import { Form, Input, Button, Spin } from 'antd'
+import { Form, Input, Button } from 'antd'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as actions from '../store/actions/auth'
-import { LoadingOutlined } from '@ant-design/icons'
+import Loading from "../components/Loading"
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+
 
 const Login =(props) => {
     let errorMessage = null
 
     const onFinish = values => {
-        console.log('Success:', values)
+        console.log('Success:')
         props.onAuth(values.username, values.password)
         props.history.push('/')
     }
@@ -29,7 +29,7 @@ const Login =(props) => {
             {
                 props.loading ?
 
-                <Spin indicator={antIcon} />
+                <Loading/>
 
                 :
 

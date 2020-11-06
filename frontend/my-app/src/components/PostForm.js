@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import {Card} from 'antd'
-import axios from 'axios'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 
 
 class PostForm extends Component {
@@ -35,21 +37,27 @@ class PostForm extends Component {
         event.preventDefault()
         const posted_by= event.target.elements.posted_by.value
         const content= event.target.elements.content.value
+        const token = localStorage.getItem("token")
 
-        console.log(posted_by,content)
 
         switch( requestType){
             case 'post':
-                return axios.post('http://127.0.0.1:8000/gallery/api/posts/',{
-                    posted_by:posted_by,
-                    content: content
+                return fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    Authorization: `${token}`,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ posted_by:posted_by, content: content })
                 })
                     .then(res => console.log(res))
                     .catch(error => console.log(error))
+
+
             case 'put':
-                return axios.put(`http://127.0.0.1:8000/gallery/api/posts/${postID}/`,{
-                    posted_by:posted_by,
-                    content: content
+                return fetch(`http://127.0.0.1:8000/gallery/api/posts/${postID}/`,{
+                    method: 'PUT',
+                    Authorization: `${token}`,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({posted_by:posted_by,content: content})
                 })
                     .then(res => console.log(res))
                     .catch(error => console.log(error))
@@ -68,28 +76,27 @@ class PostForm extends Component {
                         this.props.requestType,
                         this.props.postID)}>
                         <div>
-                            <label>Posted By </label>
-                            <input
-                                name="posted_by"
-                                type='text'
-                                value={posted_by}
-                                onChange={this.handlePostedByChange}
-                            />
+
+                            <TextField required id="standard-required" label="Posted By" defaultValue="Enter Content here" name="posted_by" value={posted_by} onChange={this.handlePostedByChange} />
+
                         </div>
                         <div>
-                            <label>Content</label>
-                            <textarea name="content" value={content} onChange={this.handleContentChange}></textarea>
+                            <TextField required id="standard-required" label="Content" defaultValue="Enter Content here" name="content" value={content} onChange={this.handleContentChange} />
+
                         </div>
                         <div>
                             <label>Image</label>
+
                             <input name="image" type='file' id='single' onChange={this.handleImageChange} />
                         </div>
-                        <button type="submit">{this.props.btnText}</button>
+
+                        <Button type="submit" variant="contained" color="primary"> {this.props.btnText} </Button>
                     </form>
                 </Card>
             </div>
         )
     }
 }
+
 
 export default PostForm

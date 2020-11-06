@@ -1,18 +1,38 @@
 import React from 'react'
+import { List, Avatar, Space } from 'antd'
 
-function Recipe({recipe}){
+const Recipe = (props)=>{
 
     return (
         <div>
-            <h3> {recipe.name}</h3>
-            <div> Posted By: {recipe.posted_by}</div>
-            <div> Description: {recipe.description}</div>
-            <div> Type: {recipe.type}</div>
-            <div> Category: {recipe.category}</div>
-            <div> Ingredients: {recipe.ingredients}</div>
-            <div> Prep time:{recipe.prep_time}</div>
-            <div> <img src={recipe.recipe_image} /></div>
 
+            <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+              onChange: page => {
+                console.log(page);
+              },
+              pageSize: 3,
+            }}
+            dataSource={props.data}
+            renderItem={item => (
+              <List.Item
+                key={item.id}
+                extra={
+                  <img width={272} alt="recipe image" src={item.recipe_image}/>
+               }
+              >
+                <List.Item.Meta
+                  avatar={<Avatar src={item.avatar} />}
+                  title={<a href={`/recipes/${item.id}`}>{item.name}</a>}
+                  description={item.description}
+                />
+                  Type: {item.type}  Category: {item.category} Ingredients: {item.ingredients} Prep Time: {item.prep_time}
+              </List.Item>
+            )}
+        />
         </div>)
 }
+
 export default Recipe
