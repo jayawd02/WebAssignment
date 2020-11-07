@@ -1,39 +1,37 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
+import { useSelector,useDispatch } from 'react-redux'
 import Video from '../components/Video'
-import axios from 'axios'
 import VideoForm from '../components/VideoForm'
 
+function VideoList ({ value }){
+    const [videoList,setVideoList] = useState([])
+    //const token = localStorage.getItem('token')
+    const token = useSelector(token=>token.token)
+    const dispatch = useDispatch()
 
 
-class VideoList extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      videoList: []
-    }
-  }
+    useEffect(()=>{
+            fetch("http://localhost:8000/gallery/api/videos",{Authorization: token})
+            .then(response => response.json())
+            .then(data => setVideoList(data))
 
-  componentDidMount() {
-    axios.get('http://localhost:8000/gallery/api/videos')
-        .then (res => {
-          this.setState({
-            videoList :res.data
-          })
-          console.log(res.data)
-        })
-  }
+    })
 
-
-  render(){
     return (
       <div>
+          <div>
+                      <span>{value}</span>
+                      <button onClick={() => dispatch({ type: 'increment-counter' })}>
+                        Increment counter
+                      </button>
+                    </div>
         <h2>Create Video</h2>
         <br/>
-        <VideoForm requestType="post" postID={null} btnText="Create"/>
+        <VideoForm requestType="post" videoID={null} btnText="Create"/>
         <h1> Video List </h1>
-        <Video data={this.state.videoList}/>
+        <Video data={videoList}/>
       </div>
     )
-  }
+
 }
 export default VideoList

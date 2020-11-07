@@ -4,7 +4,7 @@ from users.models import Profile
 
 
 class VideoSerializer(serializers.ModelSerializer):
-    posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
+    ##posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
     #profile_pic = serializers.PrimaryKeyRelatedField(many=True, queryset=Profile.objects.all())
 
     class Meta:
@@ -13,7 +13,7 @@ class VideoSerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
+    ##posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
 
     class Meta:
         model = Recipe
@@ -21,7 +21,8 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
+    ##posted_by = serializers.ReadOnlyField(source='posted_by.first_name')
+    posted_by=serializers.CharField(source='posted_by.first_name')
     comments = serializers.PrimaryKeyRelatedField(many=True, queryset=PostComment.objects.all())
     #likes = serializers.PrimaryKeyRelatedField(many=True,queryset=PostLike.objects.all())
     #dislikes = serializers.PrimaryKeyRelatedField(many=True,queryset=PostDislike.objects.all())

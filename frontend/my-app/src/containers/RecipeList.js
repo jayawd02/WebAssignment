@@ -1,39 +1,30 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
 import Recipe from '../components/Recipe'
-import axios from 'axios'
 import RecipeForm from "../components/RecipeForm"
 
 
 
-class RecipeList extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      recipeList: []
-    }
+function RecipeList (){
+    const [recipeList,setRecipeList] = useState([])
+    //const token= localStorage.getItem('token')
+    const token = useSelector(token=>token.token)
 
-  }
+    useEffect(()=>{
+            fetch("http://localhost:8000/gallery/api/recipes",{Authorization: token})
+            .then(response => response.json())
+            .then(data => setRecipeList(data))
 
-  componentDidMount() {
-    axios.get('http://localhost:8000/gallery/api/recipes')
-        .then (res => {
-          this.setState({
-            recipeList :res.data
-          })
-          console.log(res.data)
-        })
-  }
+    })
 
-  render(){
     return (
       <div>
         <h2>Create Recipe</h2>
         <br/>
-        <RecipeForm requestType="post" postID={null} btnText="Create"/>
+        <RecipeForm requestType="post" recipeID={null} btnText="Create"/>
         <h1> Recipe List </h1>
-        <Recipe data={this.state.recipeList}/>
+        <Recipe data={recipeList}/>
       </div>
     )
-  }
 }
 export default RecipeList

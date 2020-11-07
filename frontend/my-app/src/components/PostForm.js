@@ -9,44 +9,33 @@ class PostForm extends Component {
     constructor(props) {
         super(props)
             this.state={
-                posted_by: '',
+
                 content: '',
                 image: ''
             }
     }
 
-    handlePostedByChange = (event) => {
-        this.setState({
-            posted_by: event.target.value
-        })
-    }
+    handleChange = (event,field) => {
 
-    handleContentChange = (event) =>{
         this.setState({
-            content: event.target.value
-        })
-    }
-
-    handleImageChange = (event) => {
-        this.setState({
-            image: event.target.value
+          [field]: event.target.value,
         })
     }
 
     handleSubmit = (event,requestType,postID) => {
         event.preventDefault()
-        const posted_by= event.target.elements.posted_by.value
+
         const content= event.target.elements.content.value
         const token = localStorage.getItem("token")
 
 
         switch( requestType){
             case 'post':
-                return fetch('https://jsonplaceholder.typicode.com/posts', {
+                return fetch('http://127.0.0.1:8000/gallery/api/posts', {
                     method: 'POST',
                     Authorization: `${token}`,
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ posted_by:posted_by, content: content })
+                    body: JSON.stringify({ content: content })
                 })
                     .then(res => console.log(res))
                     .catch(error => console.log(error))
@@ -57,7 +46,7 @@ class PostForm extends Component {
                     method: 'PUT',
                     Authorization: `${token}`,
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({posted_by:posted_by,content: content})
+                    body: JSON.stringify({content: content})
                 })
                     .then(res => console.log(res))
                     .catch(error => console.log(error))
@@ -66,7 +55,7 @@ class PostForm extends Component {
     }
 
     render () {
-        const {posted_by,content,image} = this.state
+        const {content,image} = this.state
         return(
             <div>
                 <Card title="Post">
@@ -75,19 +64,15 @@ class PostForm extends Component {
                         event,
                         this.props.requestType,
                         this.props.postID)}>
-                        <div>
 
-                            <TextField required id="standard-required" label="Posted By" defaultValue="Enter Content here" name="posted_by" value={posted_by} onChange={this.handlePostedByChange} />
-
-                        </div>
                         <div>
-                            <TextField required id="standard-required" label="Content" defaultValue="Enter Content here" name="content" value={content} onChange={this.handleContentChange} />
+                            <TextField required id="standard-required" label="Content" defaultValue="Enter Content here" name="content" value={content} onChange={(event)=>this.handleChange(event,'content')} />
 
                         </div>
                         <div>
                             <label>Image</label>
 
-                            <input name="image" type='file' id='single' onChange={this.handleImageChange} />
+                            <input name="image" type='file' id='single' onChange={(event)=>this.handleChange(event,'image')} />
                         </div>
 
                         <Button type="submit" variant="contained" color="primary"> {this.props.btnText} </Button>

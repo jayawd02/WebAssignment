@@ -18,7 +18,7 @@ class CustomLayout extends Component{
                   <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
                   {
                       this.props.isAuthenticated ?
-                          <Menu.Item key="2"><Link to={`/profile${this.props.memberID}`}>Profile</Link></Menu.Item>
+                          <Menu.Item key="2"><Link to={`/profile/1`}>Profile</Link></Menu.Item>
                       :
                           <Menu.Item key="10"><Link to="/signup">Register</Link></Menu.Item>
                   }

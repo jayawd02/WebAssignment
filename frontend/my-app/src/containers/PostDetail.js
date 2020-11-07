@@ -30,6 +30,10 @@ class PostDetail extends Component{
     }
   }
 
+  componentWillUnmount (){
+        console.log ("unmount")
+    }
+
   handleDelete= (event) => {
         const postID = this.props.match.params.postID
         const token = localStorage.getItem("token")
@@ -67,7 +71,7 @@ class PostDetail extends Component{
 
                 {
                     this.handleTokenNotNull() ?
-                          <PostForm requestType="put" postID={this.props.match.params.postID} btnText="Update"/>
+                          <PostForm requestType="put" postID={this.props.match.params.postID} data={this.state.post} btnText="Update"/>
                     :
                         <h3> You are not authorized to edit this post </h3>
                 }

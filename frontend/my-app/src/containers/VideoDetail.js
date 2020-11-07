@@ -24,7 +24,7 @@ class VideoDetail extends Component{
 
   handleDelete= (event) => {
         const videoID = this.props.match.params.videoID
-        axios.delete(`http://localhost:8000/gallery/api/recipes/${videoID}`)
+        axios.delete(`http://localhost:8000/gallery/api/videos/${videoID}`)
         this.props.history.push('/')
         this.forceUpdate()
   }

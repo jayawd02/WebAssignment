@@ -24,11 +24,10 @@ class RecipeForm extends Component {
             }
     }
 
-    handleChange = (event) => {
-        const type= event.target.elements.type.value
+    handleChange = (event,field) => {
+
         this.setState({
-          ...this.state,
-          [type]: event.target.value,
+          [field]: event.target.value,
         })
     }
 
@@ -56,7 +55,7 @@ class RecipeForm extends Component {
                         <CardContent>
                             <div>
 
-                                <TextField required id="standard-required" label="Name" defaultValue="Enter Recipe Name here" name="name" value={name}  />
+                                <TextField required id="standard-required" label="Name" defaultValue="Enter Recipe Name here" name="name" value={name} onChange={(event)=>this.handleChange(event,'name')}   />
 
                             </div>
                             <div>
@@ -64,7 +63,7 @@ class RecipeForm extends Component {
                                 <Select
                                   native
                                   value={type}
-                                  onChange={this.handleChange}
+                                  onChange={(event)=>this.handleChange(event,'type')}
                                   inputProps={{
                                     name: 'type',
                                     id: 'type-native-simple',
@@ -83,7 +82,7 @@ class RecipeForm extends Component {
                                 <Select
                                   native
                                   value={category}
-                                  onChange={this.handleChange}
+                                  onChange={(event)=>this.handleChange(event,'category')}
                                   inputProps={{
                                     name: 'category',
                                     id: 'category-native-simple',
@@ -101,21 +100,21 @@ class RecipeForm extends Component {
                                 </Select>
                             </div>
                             <div>
-                                <TextField required id="standard-required" label="Description" defaultValue="Enter Description here" name="description" value={description}  />
+                                <TextField required id="standard-required" label="Description" defaultValue="Enter Description here" name="description" value={description} onChange={(event)=>this.handleChange(event,'description')}  />
 
                             </div>
                             <div>
                                 <label>Recipe Image </label>
 
-                                <input name="recipe_image" type='file' id='single'  />
+                                <input name="recipe_image" type='file' id='single' onChange={(event)=>this.handleChange(event,'recipe_image')}  />
                             </div>
                             <div>
-                                <TextField required id="standard-required" label="Ingredients" defaultValue="Enter Ingredients here" name="ingredients" value={ingredients}  />
+                                <TextField required id="standard-required" label="Ingredients" defaultValue="Enter Ingredients here" name="ingredients" value={ingredients} onChange={(event)=>this.handleChange(event,'ingredients')} />
 
                             </div>
 
                             <div>
-                                <TextField required id="standard-required" label="Prep Time" defaultValue="Enter prep time here" name="prep_time" value={prep_time}  />
+                                <TextField required id="standard-required" label="Prep Time" defaultValue="Enter prep time here" name="prep_time" value={prep_time} onChange={(event)=>this.handleChange(event,'prep_time')} />
 
                             </div>
                         </CardContent>
