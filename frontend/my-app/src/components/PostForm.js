@@ -31,11 +31,11 @@ class PostForm extends Component {
 
         switch( requestType){
             case 'post':
-                return fetch('http://127.0.0.1:8000/gallery/api/posts', {
+                return fetch('http://127.0.0.1:8000/gallery/api/posts/', {
                     method: 'POST',
-                    Authorization: `${token}`,
+                    Authorization: token,
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content: content })
+                    body: JSON.stringify({ posted_by: '7', content: content })
                 })
                     .then(res => console.log(res))
                     .catch(error => console.log(error))
@@ -44,7 +44,7 @@ class PostForm extends Component {
             case 'put':
                 return fetch(`http://127.0.0.1:8000/gallery/api/posts/${postID}/`,{
                     method: 'PUT',
-                    Authorization: `${token}`,
+                    Authorization: token,
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({content: content})
                 })

@@ -13,6 +13,8 @@ import RecipeForm from './components/RecipeForm'
 import RecipeDetail from './containers/RecipeDetail'
 import VideoForm from './components/VideoForm'
 import VideoDetail from './containers/VideoDetail'
+import ArticleList from './containers/ArticleList'
+import ArticleDetail from './containers/ArticleDetail'
 
 const BaseRouter = () => (
     <div>
@@ -26,6 +28,8 @@ const BaseRouter = () => (
         <Route exact path='/video/new' component={VideoForm} />
         <Route exact path='/recipes/:recipeID' component={RecipeDetail} />
         <Route exact path='/recipe/new' component={RecipeForm} />
+        <Route exact path='/articles' component={ArticleList} />
+        <Route exact path='/articles/:articleID' component={ArticleDetail} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/profile/:memberID' component={ProfileDetail} />

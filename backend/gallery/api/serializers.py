@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from gallery.models import Video, Post, Recipe, PostComment, PostLike, PostDislike
+from gallery.models import Video, Post, Recipe, PostComment, PostLike, PostDislike, Article
 from users.models import Profile
 
 
@@ -18,6 +18,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         exclude = ['date_posted']
+
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -47,3 +48,11 @@ class PostLikeSerializer(serializers.ModelSerializer):
 class PostDislikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostDislike
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = Article
+        fields = '__all__'

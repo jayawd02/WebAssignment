@@ -20,14 +20,14 @@ class CustomLayout extends Component{
                       this.props.isAuthenticated ?
                           <Menu.Item key="2"><Link to={`/profile/1`}>Profile</Link></Menu.Item>
                       :
-                          <Menu.Item key="10"><Link to="/signup">Register</Link></Menu.Item>
+                          <Menu.Item key="3"><Link to="/signup">Register</Link></Menu.Item>
                   }
 
                   {
                       this.props.isAuthenticated ?
-                          <Menu.Item key="3" onClick={this.props.logout}>Logout</Menu.Item>
+                          <Menu.Item key="4" onClick={this.props.logout}>Logout</Menu.Item>
                       :
-                          <Menu.Item key="4"><Link to="/login">Login</Link></Menu.Item>
+                          <Menu.Item key="5"><Link to="/login">Login</Link></Menu.Item>
 
                   }
 
@@ -38,12 +38,13 @@ class CustomLayout extends Component{
               <Sider width={200} className="site-layout-background">
                 <Menu mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%', borderRight: 0 }}>
                   <SubMenu key="sub1" icon={<UserOutlined />} title="My Plans">
-                    <Menu.Item key="5">Workout Plan</Menu.Item>
-                    <Menu.Item key="6">Meal Plan</Menu.Item>
+                    <Menu.Item key="6">Workout Plan</Menu.Item>
+                    <Menu.Item key="7">Meal Plan</Menu.Item>
                   </SubMenu>
-                  <Menu.Item key="7" icon={<MessageOutlined />}><Link to="/posts">Posts</Link></Menu.Item>
-                  <Menu.Item key="8" icon={<CameraOutlined />}><Link to="/videos">Videos</Link></Menu.Item>
-                  <Menu.Item key="9" icon={<LaptopOutlined />}><Link to="/recipes">Recipes</Link></Menu.Item>
+                  <Menu.Item key="8" icon={<MessageOutlined />}><Link to="/posts">Posts</Link></Menu.Item>
+                  <Menu.Item key="9" icon={<CameraOutlined />}><Link to="/videos">Videos</Link></Menu.Item>
+                  <Menu.Item key="10" icon={<LaptopOutlined />}><Link to="/recipes">Recipes</Link></Menu.Item>
+                    <Menu.Item key="11" icon={<LaptopOutlined />}><Link to="/articles">Article</Link></Menu.Item>
 
                 </Menu>
               </Sider>

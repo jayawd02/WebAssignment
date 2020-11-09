@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Video, Recipe, Post, PostComment
+from .models import Video, Recipe, Post, PostComment, Article
 
 
 class VideoAdmin(admin.ModelAdmin):
@@ -37,3 +37,5 @@ admin.site.register (Video,VideoAdmin)
 admin.site.register (Recipe, RecipeAdmin)
 admin.site.register (Post,PostAdmin)
 admin.site.register (PostComment,PostCommentAdmin)
+admin.site.register(Article)
+
