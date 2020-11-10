@@ -10,18 +10,21 @@ Version Control:
     It is a distributed version controling system and is used for tracking changes. Can you to track changes to source code while developing software
 - List 3 git commands you’ve learned in this course.
     
-    git add <filename>
+    git add <filename>  - to add files to the git repository. similar to staging
     
-    git commit -m "Commit message"
+    git commit -m "Commit message"  - to commit files to the git repo
     
-    git push origin <branch>
+    git push origin <branch> - pushing changes to the git repo.
     
 - What is GitHub and what is it used for?
     
-    It provides hosting for software development and version control using Git
+    It provides hosting for software development and version control using Git.
+    It is useful when several developers are working together they can coordinate their work and maintain the code in the same repository.
+    
 - What is Kanban and what is it used for?
     
-    It is a workflow managament method and used as a tool for Agile software development.
+    It is a workflow managament method and used as a tool for Agile software development. It has 3 basic principles : Visualizing the tasks and  workflow by using Kanban boards,  Limit the work in progress items, enhance the flow by pulling in work
+    
 - What is Markdown and what is it used for?
     
     It is a markup language with plain-text-formatting syntax. Used to format files like Readme files
@@ -29,24 +32,54 @@ Version Control:
 Platform vs Infrastructure:
 
 - What are some of the pros and cons of using Platform-as-a-Service (PaaS) providers such as Heroku?
+Pros : 
+* Easy to deploy and configure
+* Can scale easily
+
+Cons : 
+* Migrations to other platforms maynot be easy or stratight forward
+* Not all features are supported 
+* More costly
+
+
 - What are some of the pros and cons of using Infrastructure-as-a-Service providers such as Amazon?
+Pros:
+* cheaper compared to PaaS
+
+Cons:
+* Complex to configure and need skills
+
+
+
 
 Web Frameworks:
 
 - What is Django? What are some of its useful features?
+It's a open source web application development framework based on Python. Since it has built in libraries, you can easliy and quickly set up a web application. It follows the model view control architecture. It has admin panel , unit test framework, basic authentication libraries, 
+
 - What is a model?
+It is the object relational mapping to the database
+
 - What is a view?
+This controls what is passed to the interface. 
+
 - Name two other popular non-Python web frameworks.
+
 - What is WSGI? What is ASGI?
 - What is celery and what are task queues used for?
 
 Databases:
 
-- What is PostgreSQL? Using StackShare, list 3 well-known companies that use
+- What is PostgreSQL? 
+It is a open source relational database management system
 
-PostgreSQL.
+Using StackShare, list 3 well-known companies that use PostgreSQL.
 
 - List two other well-known databases.
+Oracle
+SQLServer
+
+
 - What are some of the pros and cons of using an Object Relational Mapper (ORM)?
 - What is the purpose of database migrations?
 - What is redis and what are two things it can be used for?
