@@ -3,42 +3,40 @@ import { useSelector } from 'react-redux'
 import Article from '../components/Article'
 import ArticleForm from '../components/ArticleForm'
 
+function  ArticleList (props) {
 
-function ArticleList (props,{ value }) {
     const [articleList,setArticleList] = useState([])
     const token = useSelector(token=>token.token)
 
    useEffect(()=>{
-        fetch("http://localhost:8000/gallery/api/articles/", {
+        const fetchData = async () => {
+            const result = await fetch("http://localhost:8000/gallery/api/articles/", {
                 method: 'GET',
                 Authorization: `Token ${token}`
             })
-            .then(response => response.json())
-            .then(data => setArticleList(data))
-            .catch(error => console.log(error))
-    })
+                .then(response => response.json())
+                .then(data => setArticleList(data))
+                .catch(error => console.log(error))
+        }
+    fetchData()
+  }, [])
 
     return (
             <div>
-                <h2> Articles</h2>
                 {
                     token ?
-                        <ArticleForm requestType="post" articleID={null} btnText="Create"/>
+                        (
+                            <div>
+                                <h2> Articles</h2>
+                                <ArticleForm requestType="post" articleID={null} btnText="Create"/>
+                                <br/>
+                                <h1> Article List </h1>
+                                <Article data={articleList}/>
+                            </div>
+                        )
                     :
-                        <h3> Login to create articles</h3>
+                        <h3> Login to see articles</h3>
                 }
-                <br/>
-                <h1> Article List </h1>
-                {
-                     token ?
-                          <Article data={articleList}/>
-                     :
-                         <h3> Login to see posts</h3>
-                }
-
-
-
-
             </div>
     )
 }

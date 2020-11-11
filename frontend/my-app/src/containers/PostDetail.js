@@ -14,7 +14,8 @@ class PostDetail extends Component{
 
   async componentDidMount() {
     const postID = this.props.match.params.postID
-    const token = localStorage.getItem("token")
+    const token=this.state.token
+    //const token = localStorage.getItem("token")
 
     const response = await fetch(`http://localhost:8000/gallery/api/posts/${postID}`,{Authorization: {token}})
     const responseJson = await response.json()

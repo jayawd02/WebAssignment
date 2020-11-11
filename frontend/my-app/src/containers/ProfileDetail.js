@@ -20,6 +20,7 @@ class ProfileDetail extends Component{
           fetch(`http://localhost:8000/members/api/members/${memberID}`)
             .then(response => response.json())
             .then(result => this.onSetResult(result,"profile"))
+
       }
       this.forceUpdate()
   }

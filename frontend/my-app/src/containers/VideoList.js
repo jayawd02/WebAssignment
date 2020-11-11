@@ -15,7 +15,7 @@ function VideoList ({ value }){
             .then(response => response.json())
             .then(data => setVideoList(data))
 
-    })
+    },[])
 
     return (
       <div>

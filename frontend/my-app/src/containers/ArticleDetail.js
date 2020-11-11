@@ -16,13 +16,13 @@ class ArticleDetail extends Component{
   async componentDidMount() {
     const articleID = this.props.match.params.articleID
     const token = this.state.token
-    const response = await fetch(`http://localhost:8000/gallery/api/articles/${articleID}`, {
+    const response =  await fetch(`http://localhost:8000/gallery/api/articles/${articleID}`, {
                 method: 'GET',
                 Authorization: `Token ${token}`
             })
     const responseJson = await response.json()
 
-    if (response.ok) {
+   if (response.ok) {
       this.setState({
         article :responseJson
       })

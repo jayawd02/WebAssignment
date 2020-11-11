@@ -1,5 +1,5 @@
 
-import {BrowserRouter as Router,Switch,Route,Link,} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 import {connect} from 'react-redux'
 import BaseRouter from "./routes"
 import React,{Component} from "react"

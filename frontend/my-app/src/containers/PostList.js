@@ -12,11 +12,11 @@ function PostList (props,{ value }) {
 
 
     useEffect(()=>{
-            fetch("http://localhost:8000/gallery/api/posts",{Authorization: token})
+            fetch("http://localhost:8000/gallery/api/posts",{Authorization: `Token ${token}`})
             .then(response => response.json())
             .then(data => setPostList(data))
 
-    })
+    },[])
 
     return (
             <div>

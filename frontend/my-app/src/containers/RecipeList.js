@@ -15,7 +15,7 @@ function RecipeList (){
             .then(response => response.json())
             .then(data => setRecipeList(data))
 
-    })
+    },[])
 
     return (
       <div>
