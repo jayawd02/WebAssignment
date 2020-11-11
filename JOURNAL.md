@@ -9,4 +9,5 @@ Date | Start Time | Estimate | End Time | Description
 6 Nov| 11.00 am|8h| 11.45 pm| enabled token authentication with login pages and restricted view to posts. Created CRUD operations for post, video and recipes, updated forms with material UI components, Addeded sessionStorage , created components for profile , home. Changed menu display accriding to login status. https://www.robinwieruch.de/local-storage-react, https://dev.to/duhbhavesh/how-to-use-fetch-api-for-crud-operations-57a0, https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples. tried to use hooks. https://reactjs.org/docs/hooks-intro.html
 7 Nov| 10.30 am| 6h|5.30 pm | Changed the list view components to stateful functions with hooks. Added useSelector and usedispatch hooks. https://react-redux.js.org/api/hooks
 8 Nov| 11.30 am| 6h| 7.30 pm | Created a new model callded article to test the CRUD functionality without foreign keys. Tried the token authentication but was not able to authenticate from frontend. 
+11 Nov | 4.30 pm| 4h| 11.30 | Fixed the bug where ftch command is looped. Followed docker tutorials to refresh
 
