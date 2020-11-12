@@ -1,6 +1,5 @@
 # web-assignment 2
 
-# web-assignment
 ## Docker Image building 
 
 - open command promt after copying the backend folder and cd to the backend directory
