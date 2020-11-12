@@ -10,4 +10,5 @@ Date | Start Time | Estimate | End Time | Description
 7 Nov| 10.30 am| 6h|5.30 pm | Changed the list view components to stateful functions with hooks. Added useSelector and usedispatch hooks. https://react-redux.js.org/api/hooks
 8 Nov| 11.30 am| 6h| 7.30 pm | Created a new model callded article to test the CRUD functionality without foreign keys. Tried the token authentication but was not able to authenticate from frontend. 
 11 Nov | 4.30 pm| 4h| 11.30 | Fixed the bug where ftch command is looped. Followed docker tutorials to refresh
+12 Nov | 11.30 am| 12h | 1.30 am | Added docker file and tested . referred to tutorial https://www.youtube.com/watch?v=nh1ynJGJuT8. Created reducers, actions and action creators for articles and post. Modified the article list o use redux. Followed the tutorial https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK. 
 
