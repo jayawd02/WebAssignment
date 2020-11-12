@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import {Link, withRouter} from "react-router-dom"
 import { Layout, Menu} from 'antd';
 import { UserOutlined, LaptopOutlined, CameraOutlined,MessageOutlined  } from '@ant-design/icons';
-import * as actions from '../store/actions/auth'
+import * as actions from '../redux/auth/authActions'
 import { connect } from 'react-redux'
 
 const { SubMenu } = Menu;

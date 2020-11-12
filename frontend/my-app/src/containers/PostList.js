@@ -7,8 +7,9 @@ import PostForm from '../components/PostForm'
 function PostList (props,{ value }) {
     const [postList,setPostList] = useState([])
     //const token = localStorage.getItem('token')
-    const token = useSelector(token=>token.token)
+    const token = useSelector(state=>state.auth.token)
     const dispatch = useDispatch()
+
 
 
     useEffect(()=>{
@@ -20,12 +21,8 @@ function PostList (props,{ value }) {
 
     return (
             <div>
-                <div>
-                      <span>{value}</span>
-                      <button onClick={() => dispatch({ type: 'increment-counter' })}>
-                        Increment counter
-                      </button>
-                    </div>
+
+
                 <h2> Create New Post</h2>
 
                 {

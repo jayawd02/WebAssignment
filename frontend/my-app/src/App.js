@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import BaseRouter from "./routes"
 import React,{Component} from "react"
 import 'antd/dist/antd.css'
-import * as actions from './store/actions/auth'
+import * as actions from './redux/auth/authActions'
 import CustomLayout from "./containers/Layout"
 
 
@@ -31,7 +31,7 @@ class App extends Component {
 
 const mapStateToProps= state =>{
     return{
-        isAuthenticated: state.token !==null
+        isAuthenticated: state.auth.token !==null
     }
 }
 

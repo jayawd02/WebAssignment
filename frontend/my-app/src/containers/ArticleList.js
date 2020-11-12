@@ -1,15 +1,20 @@
 import React, {useState,useEffect} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Article from '../components/Article'
 import ArticleForm from '../components/ArticleForm'
+import {fetchArticles} from "../redux"
+import Loading from "../components/Loading";
 
 function  ArticleList (props) {
-
-    const [articleList,setArticleList] = useState([])
-    const token = useSelector(token=>token.token)
+    //const [articleList,setArticleList] = useState([])
+    const token = useSelector(state=>state.auth.token)
+    const dispatch =useDispatch()
+    let articleData =useSelector(state=>state.article)
 
    useEffect(()=>{
-        const fetchData = async () => {
+       dispatch(fetchArticles())
+
+       /*const fetchData = async () => {
             const result = await fetch("http://localhost:8000/gallery/api/articles/", {
                 method: 'GET',
                 Authorization: `Token ${token}`
@@ -18,23 +23,30 @@ function  ArticleList (props) {
                 .then(data => setArticleList(data))
                 .catch(error => console.log(error))
         }
-    fetchData()
-  }, [])
+       fetchData()*/
+
+   }, [])
 
     return (
             <div>
                 {
-                    token ?
-                        (
+                    token ? (
+                        articleData.loading?
+                                <Loading/>
+                        : articleData.error ? (
+                              <p> {articleData.error}</p>
+                        ): (
                             <div>
                                 <h2> Articles</h2>
                                 <ArticleForm requestType="post" articleID={null} btnText="Create"/>
                                 <br/>
+
                                 <h1> Article List </h1>
-                                <Article data={articleList}/>
+                                <Article data={articleData.articles}/>
+                                {console.log("articleData",articleData)}
                             </div>
-                        )
-                    :
+                            )
+                    ):
                         <h3> Login to see articles</h3>
                 }
             </div>

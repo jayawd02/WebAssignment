@@ -8,7 +8,7 @@ import RecipeForm from "../components/RecipeForm"
 function RecipeList (){
     const [recipeList,setRecipeList] = useState([])
     //const token= localStorage.getItem('token')
-    const token = useSelector(token=>token.token)
+    const token = useSelector(state=>state.auth.token)
 
     useEffect(()=>{
             fetch("http://localhost:8000/gallery/api/recipes",{Authorization: token})

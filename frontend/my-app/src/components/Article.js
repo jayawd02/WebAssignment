@@ -1,8 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { List, Avatar, Space } from 'antd'
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
 import Loading from "./Loading"
-import { connect } from 'react-redux'
+
 
 
 const IconText = ({ icon, text }) => (
@@ -13,10 +14,12 @@ const IconText = ({ icon, text }) => (
 )
 
 const Article = (props)=> {
+
     return (
         <div>
+
         {
-            props.loading ?
+            useSelector(state =>state.article.articleLoading) ?
                 <Loading/>
             :
 
@@ -55,12 +58,8 @@ const Article = (props)=> {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        loading: state.loading
-    }
-}
-export default connect(mapStateToProps)(Article)
+
+export default Article
 
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import * as actions from '../store/actions/auth'
+import * as actions from '../redux/auth/authActions'
 import Loading from "../components/Loading"
 
 
@@ -62,8 +62,8 @@ const Login =(props) => {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.loading,
-        error: state.error
+        loading: state.auth.loading,
+        error: state.auth.error
     }
 }
 

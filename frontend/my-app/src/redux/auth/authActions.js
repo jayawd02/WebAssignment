@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as actionTypes from './actionTypes'
+import * as actionTypes from './authActionTypes'
 
 export const authStart = () => {
   return {

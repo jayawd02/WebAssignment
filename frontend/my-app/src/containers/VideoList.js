@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import Video from '../components/Video'
 import VideoForm from '../components/VideoForm'
+import {decrease, increase} from "../redux";
 
 function VideoList ({ value }){
     const [videoList,setVideoList] = useState([])
     //const token = localStorage.getItem('token')
-    const token = useSelector(token=>token.token)
+    const token = useSelector(state=>state.auth.token)
+    const counter =useSelector(state=>state.counter.counter)
     const dispatch = useDispatch()
 
 
@@ -20,11 +22,10 @@ function VideoList ({ value }){
     return (
       <div>
           <div>
-                      <span>{value}</span>
-                      <button onClick={() => dispatch({ type: 'increment-counter' })}>
-                        Increment counter
-                      </button>
-                    </div>
+                    <h2> Counter : {counter}</h2>
+                    <button onClick={()=>dispatch(increase())}> INCREMENT</button>
+                    <button onClick={()=>dispatch(decrease())}> DECREMENT</button>
+                </div>
         <h2>Create Video</h2>
         <br/>
         <VideoForm requestType="post" videoID={null} btnText="Create"/>
