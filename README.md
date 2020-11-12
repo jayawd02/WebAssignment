@@ -2,7 +2,7 @@
 ## Docker Image building 
 
 - open command promt after copying the backend folder and cd to the backend directory
-- run command docker-compose up
+- run command "docker-compose up"
 
 
 ## developer journal
