@@ -1,9 +1,25 @@
-FROM python:3
+FROM python:3.8
+
 ENV PYTHONUNBUFFERED 1
-WORKDIR /app/api
-COPY requirements.txt ./
+ENV PATH="/scripts:${PATH}"
+COPY ./requirements.txt ./
+
+
 RUN pip install -r requirements.txt
-COPY . ./
+
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
+COPY ./scripts /scripts
+
+RUN chmod +x /scripts/*
+
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
+
 EXPOSE 8000
-COPY ./docker-entrypoint.sh ./docker-entrypoint.sh
-CMD ["./docker-entrypoint.sh"]
+
+CMD ["docker-entrypoint.sh"]
+
+
+
