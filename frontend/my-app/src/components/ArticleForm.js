@@ -2,6 +2,7 @@ import React, {Component, useEffect, useState} from 'react'
 import {Card} from 'antd'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { useSelector} from "react-redux"
 
 
 
@@ -9,10 +10,12 @@ function ArticleForm (props) {
 
     const [title,setTitle]=useState('')
     const [content,setContent]=useState('')
+    const token = useSelector(state=>state.auth.token)
+
 
     useEffect((event,field)=>{
         return
-    })
+    },[])
 
     function handleTitleChange (event) {
         setTitle(event.target.value)
@@ -27,7 +30,8 @@ function ArticleForm (props) {
         event.preventDefault()
         setTitle(event.target.elements.title.value)
         setContent(event.target.elements.content.value )
-        const token = localStorage.getItem("token")
+        //const token = localStorage.getItem("token")
+
 
 
         switch( requestType){
@@ -55,9 +59,6 @@ function ArticleForm (props) {
         }
 
     }
-
-
-
         return(
             <div>
                 <Card title="Article">

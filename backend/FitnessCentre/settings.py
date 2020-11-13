@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '_&xn)3qd=!ybca$%!hb6s1u1ua0+=5n=5w1#5&58@q(go0@(i='
+
 SECRET_KEY= os.environ.get('SECRET_KEY','defaultkey') #todo uncomment for heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -39,6 +39,8 @@ DEBUG =bool(int(os.environ.get('DEBUG',0)))
 
 ALLOWED_HOSTS = [
     'damp-temple-36671.herokuapp.com',
+    'fitness-centre-react-frontend.s3-website-ap-southeast-2.amazonaws.com',
+    'dinuz.live',
     'localhost',
     '127.0.0.1',
 ]
@@ -107,12 +109,30 @@ WSGI_APPLICATION = 'FitnessCentre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
-     }
-}
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+
+else:
+    DATABASES = {
+           'default': {
+               'ENGINE': 'django.db.backends.sqlite3',
+               'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
+           }
+    }
+
+
+
+#DATABASES ['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -170,36 +190,35 @@ LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) #todo uncomment for heroku
 
 #django_heroku.settings(locals()) #todo uncomment for heroku
 
-##AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-##AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-##AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
-##AWS_S3_FILE_OVERWRITE = False # rename same file names without overwrite
-##AWS_DEFAULT_ACL = None
+AWS_S3_FILE_OVERWRITE = False # rename same file names without overwrite
+AWS_DEFAULT_ACL = None
 
-##DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-CACHES = {
-    "default": {
-         "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": os.environ.get('REDIS_URL'),
-    }
-}
+# CACHES = {
+#     "default": {
+#          "BACKEND": "redis_cache.RedisCache",
+#          "LOCATION": os.environ.get('REDIS_URL'),
+#     }
+# }
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+#CELERY_BROKER_URL = 'redis://localhost:6379'
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-#CELERY_BROKER_URL=os.environ['REDIS_URL']
-#CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
-
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = TIME_ZONE
+# CELERY_BROKER_URL=os.environ['REDIS_URL']
+# CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
+#
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = TIME_ZONE
 
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')

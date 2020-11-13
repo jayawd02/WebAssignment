@@ -43,7 +43,7 @@ function  ArticleList (props) {
 
                                 <h1> Article List </h1>
                                 <Article data={articleData.articles}/>
-                                {console.log("articleData",articleData)}
+
                             </div>
                             )
                     ):

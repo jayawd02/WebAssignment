@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Card,Button} from 'antd'
 import ArticleForm from "../components/ArticleForm"
 import {connect} from 'react-redux'
-import Article from "../components/Article";
+import {fetchArticles} from "../redux"
+
 
 class ArticleDetail extends Component{
   constructor(props) {
@@ -89,4 +90,11 @@ const mapStateToProps= state =>{
         token: state.auth.token
     }
 }
-export default connect(mapStateToProps)(ArticleDetail)
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchArticles: ()=> dispatch(fetchArticles())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ArticleDetail)
