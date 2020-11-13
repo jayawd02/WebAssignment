@@ -1,14 +1,11 @@
-Architecture:
-
+## Architecture:
 - When would you prefer to develop an Assignment 1 style web application (Server-side rendering, serving HTML)?
 - When would you prefer an Assignment 2 one (REST API & Single Page Application)?
 
-Version Control:
-
-- What is git and what is it used for? 
-    
-    It is a distributed version controling system and is used for tracking changes. Can you to track changes to source code while developing software
-- List 3 git commands you’ve learned in this course.
+### Version Control:
+### What is git and what is it used for?     
+    It is a  version controling system and is used for tracking changes. You can use it to track changes to source code while developing software
+### List 3 git commands you’ve learned in this course.
     
     git add <filename>  - to add files to the git repository. similar to staging
     
@@ -16,76 +13,112 @@ Version Control:
     
     git push origin <branch> - pushing changes to the git repo.
     
-- What is GitHub and what is it used for?
+### What is GitHub and what is it used for?
     
     It provides hosting for software development and version control using Git.
     It is useful when several developers are working together they can coordinate their work and maintain the code in the same repository.
     
-- What is Kanban and what is it used for?
+### What is Kanban and what is it used for?
     
     It is a workflow managament method and used as a tool for Agile software development. It has 3 basic principles : Visualizing the tasks and  workflow by using Kanban boards,  Limit the work in progress items, enhance the flow by pulling in work
     
-- What is Markdown and what is it used for?
+### What is Markdown and what is it used for?
     
-    It is a markup language with plain-text-formatting syntax. Used to format files like Readme files
+    It is a light weight markup language with plain-text-formatting syntax. Used to format files like Readme files. Markdown file has the extent ion or *.md or *. markdown.
+    https://en.wikipedia.org/wiki/Markdown
 
-Platform vs Infrastructure:
+## Platform vs Infrastructure:
 
-- What are some of the pros and cons of using Platform-as-a-Service (PaaS) providers such as Heroku?
-Pros : 
-* Easy to deploy and configure
-* Can scale easily
+### What are some of the pros and cons of using Platform-as-a-Service (PaaS) providers such as Heroku?
+*Pros :*
+    * Easy to deploy and configure
+    * Can scale easily
 
-Cons : 
-* Migrations to other platforms maynot be easy or stratight forward
-* Not all features are supported 
-* More costly
-
-
-- What are some of the pros and cons of using Infrastructure-as-a-Service providers such as Amazon?
-Pros:
-* cheaper compared to PaaS
-
-Cons:
-* Complex to configure and need skills
+*Cons :* 
+    * Migrations to other platforms maynot be easy or stratight forward
+    * Not all features are supported 
+    * More costly
 
 
+### What are some of the pros and cons of using Infrastructure-as-a-Service providers such as Amazon?
+*Pros:*
+    * cheaper compared to PaaS
 
+*Cons:*
+    * Complex to configure and need skills
+    * difficult to migrate if proprietary database or cloud vendor specific technology is used
 
-Web Frameworks:
+## Web Frameworks:
 
-- What is Django? What are some of its useful features?
-It's a open source web application development framework based on Python. Since it has built in libraries, you can easliy and quickly set up a web application. It follows the model view control architecture. It has admin panel , unit test framework, basic authentication libraries, 
+### What is Django? What are some of its useful features?
+    It's a open source web application development framework based on Python. Since it has built in libraries, you can easliy and quickly set up a web application. It follows the model -template-view  architecture. It has admin panel , unit test framework, basic authentication libraries, ORM etc
+    https://en.wikipedia.org/wiki/Django_(web_framework)
 
-- What is a model?
-It is the object relational mapping to the database
+### What is a model?
+    It is the object relational mapping to the database. It is the built-in feature that Django uses to create tables, their fields, and various constraints.
 
-- What is a view?
-This controls what is passed to the interface. 
+### What is a view?
+This controls what is passed to the interface.It is a Python function or class that takes a web request and return a web response. Views are used to do things like fetch objects from the database, modify those objects if needed, render forms, return HTML, and much more
 
-- Name two other popular non-Python web frameworks.
+### Name two other popular non-Python web frameworks.
+    Ruby on Rails
+    React
+    https://hotframeworks.com/
 
-- What is WSGI? What is ASGI?
-- What is celery and what are task queues used for?
+### What is WSGI? 
+    WSGI (Web server gateway interface) is a  Python standard. It is a specification that describes how a web server communicates with web applications, and how web applications can be chained together to process one request. Provided a standard for synchronous Python apps
 
-Databases:
+### What is ASGI?
+    ASGI (Asynchronous Server Gateway Interface) is a successor to WSGI. It is intended to provide a standard interface between async-capable Python web servers, frameworks, and applications. It is backward compatible with WSGI.
+    https://asgi.readthedocs.io/en/latest/
 
-- What is PostgreSQL? 
-It is a open source relational database management system
+### What is celery and what are task queues used for?
+    Celery is an open source asynchronous task queue or job queue based on distributed message passing.
+    https://en.wikipedia.org/wiki/Celery_(software)
 
-Using StackShare, list 3 well-known companies that use PostgreSQL.
+## Databases:
 
-- List two other well-known databases.
-Oracle
-SQLServer
+### What is PostgreSQL? 
+    It is a open source advanced relational database management system
+    https://en.wikipedia.org/wiki/PostgreSQL
 
+### Using StackShare, list 3 well-known companies that use PostgreSQL.
+    Uber 
+    Netflix
+    Instagram
+    https://stackshare.io/postgresql#:~:text=PostgreSQL%20is%20an%20advanced%20object,category%20of%20a%20tech%20stack.
 
-- What are some of the pros and cons of using an Object Relational Mapper (ORM)?
-- What is the purpose of database migrations?
-- What is redis and what are two things it can be used for?
-- Why do we use caches?
+### List two other well-known databases.
+    Oracle
+    MySQL
 
-HTTP & REST:
+### What are some of the pros and cons of using an Object Relational Mapper (ORM)?
+*Pros*
+    -No need to write SQL queries
+    -We can easily switch from one database to another 
+    -You can extend and inherent from models (OOP)
+    -SQL injection is difficlut
+*Cons*
+    -Complex queries may cause performance issues if not written properly
+    -Developers will tend to ignorace basic SQL skills which is useful
+    
+    https://centralblue.co.uk/blog/2019/01/the-pros-and-cons-of-object-relational-mapping-orm
+
+### What is the purpose of database migrations?
+    Migrations in django is the way the changes in models are propogated to the database.
+    https://docs.djangoproject.com/en/3.1/topics/migrations/
+    
+    The genral database migration is changing from out platform to the other which is done t save cost, improve performance, for scalability etc.
+
+### What is redis and what are two things it can be used for?
+    It is a distributed in-memory key–value database.
+    It can be used for caching and message brokering
+    https://en.wikipedia.org/wiki/Redis
+
+### Why do we use caches?
+    Cache is a temporary storage area to store data so that data can be served faster in future requests.
+
+## HTTP & REST:
 
 - Which four HTTP methods does REST use for performing CRUD operations?
 - What is Django REST Framework used for?
