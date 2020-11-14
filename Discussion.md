@@ -1,4 +1,4 @@
-## Architecture:
+# Architecture:
 ### When would you prefer to develop an Assignment 1 style web application (Server-side rendering, serving HTML)?
     For a simple and small application or a website with lot of static contents.
 
@@ -7,7 +7,7 @@
     The interactin between server and client is low as only the payload needs to be sent to the client.
     Some functionality can still work off line for eample a counter or a simple game
 
-### Version Control:
+# Version Control:
 ### What is git and what is it used for?     
     It is a  version controling system and is used for tracking changes. You can use it to track changes to source code while developing software
 ### List 3 git commands you’ve learned in this course.
@@ -50,7 +50,7 @@
     - Complex to configure and need skills
     - difficult to migrate if proprietary database or cloud vendor specific technology is used
 
-## Web Frameworks:
+# Web Frameworks:
 
 ### What is Django? What are some of its useful features?
     It's a open source web application development framework based on Python. Since it has built in libraries, you can easliy and quickly set up a web application. It follows the model -template-view  architecture. It has admin panel , unit test framework, basic authentication libraries, ORM etc
@@ -78,7 +78,7 @@
     Celery is an open source asynchronous task queue or job queue based on distributed message passing.
     https://en.wikipedia.org/wiki/Celery_(software)
 
-## Databases:
+# Databases:
 
 ### What is PostgreSQL? 
     It is a open source advanced relational database management system
@@ -120,7 +120,7 @@
 ### Why do we use caches?
     Cache is a temporary storage area to store data so that data can be served faster in future requests.
 
-## HTTP & REST:
+# HTTP & REST:
 
 ### Which four HTTP methods does REST use for performing CRUD operations?
     GET - for Read
@@ -147,7 +147,7 @@
      It is a computer communications protocol, providing full-duplex communication channels over a single TCP connection. In WebSocket connection, the connection remains open and the data can be sent to the client even if the client has not asked for it. This saves a lot of requests because the client does not have to ask explicitly each time. WebSocket’s are faster and requires lower bandwidth. 
      https://en.wikipedia.org/wiki/WebSocket
 
-## React:
+# React:
 
 ### What is the virtual DOM?
     It is a programming concept where a “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM. This process is called reconciliation. In React, changes are first made in Virtual DOM and then they are synced with the actual DOM
@@ -172,7 +172,7 @@
 ### What is react-native used for?
     It is an open-source mobile application framework and used to develop applications for Android, Android TV, iOS, macOS, tvOS, Web, Windows and UWP by enabling developers to use React's framework along with native platform capabilities
 
-## Redux:
+# Redux:
 
 
 ### What is redux used for?
@@ -231,7 +231,7 @@
     It provides an optional CssBaseline component. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements. Using this library the application can look professional without the knowledge of designing concepts. There are large number of UI elements available out of the box which can save a lot of time and still present a unified design experience for the end user.
     
 
-## Docker:
+# Docker:
 
 ### Why do we run apt-get update && apt-get install -y in one command when using Docker?
     Once starting the container, we cannot work interactively with the shell we need to run it in the same line with -y switch
@@ -259,7 +259,7 @@
     We didn;t use it as our application is small and didn't include several containers or processes
 
 
-## Deployment:
+# Deployment:
 
 ### What is Amazon S3 used for?
     It is storage for the Internet. It is designed to make web-scale computing easier for developers. Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web.
