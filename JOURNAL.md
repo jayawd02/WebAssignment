@@ -12,4 +12,6 @@ Date | Start Time | Estimate | End Time | Description
 11 Nov | 4.30 pm| 4h| 11.30 | Fixed the bug where ftch command is looped. Followed docker tutorials to refresh
 12 Nov | 11.30 am| 12h | 1.30 am | Added docker file and tested . referred to tutorial https://www.youtube.com/watch?v=nh1ynJGJuT8. Created reducers, actions and action creators for articles and post. Modified the article list o use redux. Followed the tutorial https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK. 
 13 Nov | 11.30 am |12h | 1.30 am | Created docker files and image. Added react app to AWS S3. https://www.youtube.com/watch?v=Kay-UvVCNFs. Created EC2 instance and added the image. but the link is not working. Spend lot of time trouble shooting. Created PostgressDB
+14 Nov | 11 am|10h |1.30 am | Configured postgress RDS and migrated the DB and created test data. Managed to add the image to ECR and created ECS cluster. EC2 is created. but unable to get the image run in EC2 . Tried to rtrouble shoot. But getting a error " Essential container in task exited" ![Error](https://github.com/kris-classes/web-assignment-jayawd02/blob/assignment-2/error%20AWS.PNG)
+
 
