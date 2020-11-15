@@ -16,8 +16,9 @@ class PostDetail extends Component{
     const postID = this.props.match.params.postID
     const token=this.state.token
     //const token = localStorage.getItem("token")
+     const api_url = process.env.REACT_APP_API_URL
 
-    const response = await fetch(`http://localhost:8000/gallery/api/posts/${postID}`,{Authorization: {token}})
+    const response = await fetch(`${api_url}/gallery/api/posts/${postID}`,{Authorization: {token}})
     const responseJson = await response.json()
 
     if (response.ok) {
@@ -38,8 +39,9 @@ class PostDetail extends Component{
   handleDelete= (event) => {
         const postID = this.props.match.params.postID
         const token = localStorage.getItem("token")
+        const api_url = process.env.REACT_APP_API_URL
 
-        fetch(`http://localhost:8000/gallery/api/posts/${postID}`,{method:'DELETE',Authorization: {token}})
+        fetch(`${api_url}/gallery/api/posts/${postID}`,{method:'DELETE',Authorization: {token}})
         this.props.history.push('/')
         this.forceUpdate()
   }

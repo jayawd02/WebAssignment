@@ -31,12 +31,11 @@ function ArticleForm (props) {
         setTitle(event.target.elements.title.value)
         setContent(event.target.elements.content.value )
         //const token = localStorage.getItem("token")
-
-
+        const api_url = process.env.REACT_APP_API_URL
 
         switch( requestType){
             case 'post':
-                return fetch('http://127.0.0.1:8000/gallery/api/articles/', {
+                return fetch(`${api_url}/gallery/api/articles/`, {
                     method: 'POST',
                     Authorization: `Token ${token}`,
                     headers: { 'Content-Type': 'application/json' },
@@ -47,7 +46,7 @@ function ArticleForm (props) {
 
 
             case 'put':
-                return fetch(`http://127.0.0.1:8000/gallery/api/articles/${articleID}/`,{
+                return fetch(`${api_url}/gallery/api/articles/${articleID}/`,{
                     method: 'PUT',
                     Authorization: `Token ${token}`,
                     headers: { 'Content-Type': 'application/json' },

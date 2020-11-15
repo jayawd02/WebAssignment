@@ -13,7 +13,9 @@ class RecipeDetail extends Component{
 
   componentDidMount() {
     const recipeID = this.props.match.params.recipeID
-    axios.get(`http://localhost:8000/gallery/api/recipes/${recipeID}`)
+    const api_url = process.env.REACT_APP_API_URL
+
+    axios.get(`${api_url}/gallery/api/recipes/${recipeID}`)
         .then (res => {
           this.setState({
             recipe :res.data
@@ -24,7 +26,9 @@ class RecipeDetail extends Component{
 
   handleDelete= (event) => {
         const recipeID = this.props.match.params.recipeID
-        axios.delete(`http://localhost:8000/gallery/api/recipes/${recipeID}`)
+        const api_url = process.env.REACT_APP_API_URL
+
+        axios.delete(`${api_url}/gallery/api/recipes/${recipeID}`)
         this.props.history.push('/')
         this.forceUpdate()
   }

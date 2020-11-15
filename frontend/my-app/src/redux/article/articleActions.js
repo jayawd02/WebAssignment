@@ -22,9 +22,10 @@ export const fetchArticlesFailure = error => {
 
 export const fetchArticles = () => {
     const token =localStorage.getItem('token')
+    const api_url = process.env.REACT_APP_API_URL
     return async (dispatch) => {
         dispatch(fetchArticlesRequest())
-        const result = await fetch("http://localhost:8000/gallery/api/articles/",{
+        const result = await fetch(`${api_url}/gallery/api/articles/`,{
                 method: 'GET',
                 Authorization: `Token ${token}`
             })

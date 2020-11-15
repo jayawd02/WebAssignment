@@ -43,6 +43,9 @@ ALLOWED_HOSTS = [
     'dinuz.live',
     'localhost',
     '127.0.0.1',
+    'http://fitnessworld.dinuz.live.s3-website-ap-southeast-2.amazonaws.com',
+    'http://fitnessworld.dinuz.live',
+    'http://www.fitnessworld.dinuz.live'
 ]
 ALLOWED_HOSTS_ENV=os.environ.get('ALLOWED_HOSTS')
 if ALLOWED_HOSTS_ENV:
@@ -109,25 +112,27 @@ WSGI_APPLICATION = 'FitnessCentre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+
 if 'RDS_DB_NAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
+     DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+             'NAME': os.environ['RDS_DB_NAME'],
+             'USER': os.environ['RDS_USERNAME'],
+             'PASSWORD': os.environ['RDS_PASSWORD'],
+             'HOST': os.environ['RDS_HOSTNAME'],
+             'PORT': os.environ['RDS_PORT'],
+         }
+     }
 
 else:
-    DATABASES = {
-           'default': {
-               'ENGINE': 'django.db.backends.sqlite3',
-               'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
-           }
-    }
+     DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
+            }
+     }
 
 
 
@@ -248,4 +253,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
+    'http://fitnessworld.dinuz.live.s3-website-ap-southeast-2.amazonaws.com',
+    'http://fitnessworld.dinuz.live',
+    'http://www.fitnessworld.dinuz.live'
 ]

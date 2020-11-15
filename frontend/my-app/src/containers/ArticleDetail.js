@@ -15,9 +15,11 @@ class ArticleDetail extends Component{
   }
 
   async componentDidMount() {
+    const api_url = process.env.REACT_APP_API_URL
     const articleID = this.props.match.params.articleID
     const token = this.state.token
-    const response =  await fetch(`http://localhost:8000/gallery/api/articles/${articleID}`, {
+
+    const response =  await fetch(`${api_url}/gallery/api/articles/${articleID}`, {
                 method: 'GET',
                 Authorization: `Token ${token}`
             })
@@ -41,8 +43,9 @@ class ArticleDetail extends Component{
   handleDelete= (event) => {
         const articleID = this.props.match.params.articleID
         const token = this.state.token
+        const api_url = process.env.REACT_APP_API_URL
 
-        fetch(`http://localhost:8000/gallery/api/articles/${articleID}`,{method:'DELETE', Authorization: `Token ${token}`})
+        fetch(`${api_url}/gallery/api/articles/${articleID}`,{method:'DELETE', Authorization: `Token ${token}`})
         this.props.history.push('/')
         this.forceUpdate()
   }

@@ -4,6 +4,7 @@ import * as actionTypes from './authActionTypes'
 export const authStart = () => {
   return {
     type :actionTypes.AUTH_START
+
   }
 }
 
@@ -40,9 +41,10 @@ export const checkAuthTimeout = expirationTime =>{
 
 
 export const authLogin = (username,password) => {
+    const api_url = process.env.REACT_APP_API_URL
   return dispatch => {
     dispatch(authStart())
-    axios.post('http://localhost:8000/rest-auth/login/',{
+    axios.post(`${api_url}/rest-auth/login/`,{
       username: username,
       password: password
     })
@@ -62,9 +64,10 @@ export const authLogin = (username,password) => {
 }
 
 export const authSignup = (username, email, password1, password2) => {
+    const api_url = process.env.REACT_APP_API_URL
   return dispatch => {
     dispatch(authStart())
-    axios.post('http://127.0.0.1:8000/users/api/register',{
+    axios.post(`${api_url}/users/api/register`,{
       username: username,
       email: email,
       password1: password1,
@@ -104,10 +107,11 @@ export const   authCheckState = () => {
 }
 
 export const loadMember = (memberID) => async (dispatch, getState) => {
+    const api_url = process.env.REACT_APP_API_URL
   dispatch({ type: actionTypes.MEMBER_LOADING });
 
   try {
-    const res = await axios.get(`http://127.0.0.1:8000/members/api/members/$memberID` )
+    const res = await axios.get(`${api_url}/members/api/members/${memberID}` )
     dispatch({
       type: actionTypes.MEMBER_LOADED,
       payload: res.data

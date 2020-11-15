@@ -27,11 +27,12 @@ class PostForm extends Component {
 
         const content= event.target.elements.content.value
         const token = localStorage.getItem("token")
+        const api_url = process.env.REACT_APP_API_URL
 
 
         switch( requestType){
             case 'post':
-                return fetch('http://127.0.0.1:8000/gallery/api/posts/', {
+                return fetch(`${api_url}/gallery/api/posts/`, {
                     method: 'POST',
                     Authorization: token,
                     headers: { 'Content-Type': 'application/json' },
@@ -42,7 +43,7 @@ class PostForm extends Component {
 
 
             case 'put':
-                return fetch(`http://127.0.0.1:8000/gallery/api/posts/${postID}/`,{
+                return fetch(`${api_url}/gallery/api/posts/${postID}/`,{
                     method: 'PUT',
                     Authorization: token,
                     headers: { 'Content-Type': 'application/json' },

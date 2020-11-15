@@ -2,24 +2,25 @@ FROM python:3.8
 
 ENV PYTHONUNBUFFERED 1
 ENV PATH="/scripts:${PATH}"
-COPY ./requirements.txt ./
-
+WORKDIR /usr/src/app
+COPY . .
+#COPY ./requirements.txt ./
 
 RUN pip install -r requirements.txt
 
-RUN mkdir /app
-COPY . /app
-WORKDIR /app
-COPY ./scripts /scripts
+#COPY . /app
 
-RUN chmod +x /scripts/*
+#COPY ./scripts /scripts
+
+RUN chmod +x ./scripts/*
 
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
 
 EXPOSE 8000
 
-CMD ["docker-entrypoint.sh"]
+CMD ["sh","./scripts/docker-entrypoint.sh"]
+#CMD ["python","./manage.py","runserver","0.0.0.0:8000"]
 
 
 

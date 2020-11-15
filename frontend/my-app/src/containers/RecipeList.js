@@ -9,9 +9,10 @@ function RecipeList (){
     const [recipeList,setRecipeList] = useState([])
     //const token= localStorage.getItem('token')
     const token = useSelector(state=>state.auth.token)
+    const api_url = process.env.REACT_APP_API_URL
 
     useEffect(()=>{
-            fetch("http://localhost:8000/gallery/api/recipes",{Authorization: token})
+            fetch(`${api_url}/gallery/api/recipes`,{Authorization: token})
             .then(response => response.json())
             .then(data => setRecipeList(data))
 

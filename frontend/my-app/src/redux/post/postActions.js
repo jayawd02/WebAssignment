@@ -22,9 +22,11 @@ export const fetchPostsFailure = error => {
 
 export const fetchPosts = () => {
     const token =localStorage.getItem('token')
+    const api_url = process.env.REACT_APP_API_URL
+
     return async (dispatch) => {
         dispatch(fetchPostsRequest())
-        const result = await fetch("http://localhost:8000/gallery/api/posts/",{
+        const result = await fetch(`${api_url}/gallery/api/posts/`,{
                 method: 'GET',
                 Authorization: `Token ${token}`
             })

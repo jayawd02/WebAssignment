@@ -13,7 +13,9 @@ class VideoDetail extends Component{
 
   componentDidMount() {
     const videoID = this.props.match.params.videoID
-    axios.get(`http://localhost:8000/gallery/api/videos/${videoID}`)
+    const api_url = process.env.REACT_APP_API_URL
+
+      axios.get(`${api_url}/gallery/api/videos/${videoID}`)
         .then (res => {
           this.setState({
             recipe :res.data
@@ -24,7 +26,9 @@ class VideoDetail extends Component{
 
   handleDelete= (event) => {
         const videoID = this.props.match.params.videoID
-        axios.delete(`http://localhost:8000/gallery/api/videos/${videoID}`)
+        const api_url = process.env.REACT_APP_API_URL
+
+        axios.delete(`${api_url}/gallery/api/videos/${videoID}`)
         this.props.history.push('/')
         this.forceUpdate()
   }

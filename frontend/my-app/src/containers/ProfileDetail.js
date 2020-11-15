@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import Profile from "./Profile"
 
 class ProfileDetail extends Component{
@@ -12,12 +11,14 @@ class ProfileDetail extends Component{
 
   componentDidMount() {
       const { profile } = this.state.profile
-      const cachedHits = sessionStorage.getItem(profile);
+      const cachedHits = sessionStorage.getItem(profile)
+      const api_url = process.env.REACT_APP_API_URL
+
       if (cachedHits) {
         this.setState({ profile: JSON.parse(sessionStorage.getItem(profile)) })
       } else {
           const memberID = this.props.match.params.memberID
-          fetch(`http://localhost:8000/members/api/members/${memberID}`)
+          fetch(`${api_url}/members/api/members/${memberID}`)
             .then(response => response.json())
             .then(result => this.onSetResult(result,"profile"))
 

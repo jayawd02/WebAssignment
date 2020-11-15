@@ -10,10 +10,11 @@ function VideoList ({ value }){
     const token = useSelector(state=>state.auth.token)
     const counter =useSelector(state=>state.counter.counter)
     const dispatch = useDispatch()
+    const api_url = process.env.REACT_APP_API_URL
 
 
     useEffect(()=>{
-            fetch("http://localhost:8000/gallery/api/videos",{Authorization: token})
+            fetch(`${api_url}/gallery/api/videos`,{Authorization: token})
             .then(response => response.json())
             .then(data => setVideoList(data))
 
