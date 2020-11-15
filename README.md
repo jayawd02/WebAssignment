@@ -3,7 +3,7 @@
 ## Docker Image building 
 
 - open command promt after copying the backend folder and cd to the backend directory
-- run command ">docker build . -t fitness_api"
+- run command "docker build . -t fitness_api"
 
 
 ### S3 bucket link for front end - 
