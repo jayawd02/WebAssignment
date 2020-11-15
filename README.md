@@ -30,7 +30,7 @@ http://ec2-3-25-82-206.ap-southeast-2.compute.amazonaws.com:8000/rest-auth/login
 ## Domain links
 front end - http://fitnessworld.dinuz.live
 
-backend - http://api.dinuz.live
+backend - http://api.dinuz.live:8000
 
 
 ## developer journal-
