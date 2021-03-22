@@ -5,6 +5,7 @@
 - open command promt after copying the backend folder and cd to the backend directory
 - run command "docker build . -t fitness_api"
 
+## Following links will no longer be accessible as the  solution is removed from AWS
 
 ### S3 bucket link for front end - 
 http://fitnessworld.dinuz.live.s3-website-ap-southeast-2.amazonaws.com/
